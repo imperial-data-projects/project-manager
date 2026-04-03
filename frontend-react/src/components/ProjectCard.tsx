@@ -68,7 +68,7 @@ export function ProjectCard({ project, templates, groups }: ProjectCardProps) {
               <CardTaskSummary project={project} />
             )}
           </span>
-          <span>Updated {formatUpdated(project.updated)}</span>
+          {project.updated && <span>Updated {formatUpdated(project.updated)}</span>}
         </div>
       </div>
 

@@ -27,6 +27,33 @@
       "notes": "Script building"
     },
     {
+      "id": "imperial-pricing-manager",
+      "name": "Imperial Pricing Manager",
+      "category": "application",
+      "domain": "customer-svc",
+      "parent": null,
+      "stakeholder": "",
+      "priority": "low",
+      "deadline": null,
+      "status": "complete",
+      "completedDate": "2026-02-17",
+      "currentPhase": "production",
+      "phases": {
+        "interview": "complete",
+        "workflow": "complete",
+        "wireframe": "complete",
+        "mockups": "complete",
+        "backend": "complete",
+        "frontend": "complete",
+        "dev-release": "complete",
+        "testing": "complete",
+        "production": "complete"
+      },
+      "tasks": [],
+      "updated": "2026-02-17",
+      "notes": ""
+    },
+    {
       "id": "master-pricing",
       "name": "Master Pricing",
       "category": "application",
@@ -49,7 +76,7 @@
         "production": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "2026-04-02",
       "notes": "Pipeline creation, database complete"
     },
     {
@@ -75,7 +102,7 @@
         "production": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "2026-04-01",
       "notes": "Format submission"
     },
     {
@@ -101,7 +128,7 @@
         "production": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "2026-03-31",
       "notes": ""
     },
     {
@@ -127,7 +154,7 @@
         "production": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "2026-03-30",
       "notes": "Page and KPI planning"
     },
     {
@@ -140,10 +167,13 @@
       "priority": "medium",
       "deadline": "2026-04-30",
       "status": "active",
-      "currentPhase": "interview",
-      "statusChip": { "type": "awaiting", "label": "Awaiting Scheduling" },
+      "currentPhase": null,
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
       "phases": {
-        "interview": "in-progress",
+        "interview": "pending",
         "workflow": "pending",
         "wireframe": "pending",
         "mockups": "pending",
@@ -154,7 +184,7 @@
         "production": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "",
       "notes": ""
     },
     {
@@ -168,7 +198,10 @@
       "deadline": "2026-05-15",
       "status": "active",
       "currentPhase": null,
-      "statusChip": { "type": "not-started", "label": "Not Started" },
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
       "phases": {
         "interview": "pending",
         "kpi-planning": "pending",
@@ -177,7 +210,7 @@
         "release": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "",
       "notes": ""
     },
     {
@@ -191,7 +224,10 @@
       "deadline": "2026-05-31",
       "status": "active",
       "currentPhase": null,
-      "statusChip": { "type": "not-started", "label": "Not Started" },
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
       "phases": {
         "interview": "pending",
         "kpi-planning": "pending",
@@ -200,7 +236,7 @@
         "release": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "",
       "notes": ""
     },
     {
@@ -214,7 +250,10 @@
       "deadline": "2026-05-31",
       "status": "active",
       "currentPhase": null,
-      "statusChip": { "type": "not-started", "label": "Not Started" },
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
       "phases": {
         "interview": "pending",
         "kpi-planning": "pending",
@@ -223,7 +262,7 @@
         "release": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "",
       "notes": ""
     },
     {
@@ -237,7 +276,10 @@
       "deadline": "2026-06-15",
       "status": "active",
       "currentPhase": null,
-      "statusChip": { "type": "not-started", "label": "Not Started" },
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
       "phases": {
         "interview": "pending",
         "kpi-planning": "pending",
@@ -246,7 +288,7 @@
         "release": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-03",
+      "updated": "",
       "notes": ""
     },
     {
@@ -260,17 +302,72 @@
       "deadline": "2026-05-31",
       "status": "active",
       "tasks": [
-        { "id": "rj-products", "name": "Product Validation", "status": "complete", "effortRange": "2-6h" },
-        { "id": "rj-addresses", "name": "Address Validation", "status": "complete", "effortRange": "1-3h" },
-        { "id": "rj-single-addr", "name": "Single-Address Location Consolidation", "status": "complete", "effortRange": "2-4h" },
-        { "id": "rj-campus", "name": "Campus Target Identification", "status": "complete", "effortRange": "2-4h" },
-        { "id": "rj-billing", "name": "Account Billing Verification", "status": "complete", "effortRange": "2-4h" },
-        { "id": "rj-commissions", "name": "Commission Data Pull", "status": "complete", "effortRange": "1-3h" },
-        { "id": "rj-subsidies", "name": "Subsidy Data Pull", "status": "complete", "effortRange": "1-3h" },
-        { "id": "rj-wb-plan", "name": "Workbook Planning", "status": "complete", "effortRange": "2-4h" },
-        { "id": "rj-wb-gen", "name": "Initial Workbook Generation", "status": "complete", "effortRange": "3-6h" },
-        { "id": "rj-acct-lock", "name": "Account and Asset Lock", "status": "complete", "effortRange": "2-4h" },
-        { "id": "rj-plano-lock", "name": "Planogram Lock", "status": "complete", "effortRange": "1-3h" }
+        {
+          "id": "rj-products",
+          "name": "Product Validation",
+          "status": "complete",
+          "effortRange": "2-6h"
+        },
+        {
+          "id": "rj-addresses",
+          "name": "Address Validation",
+          "status": "complete",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "rj-single-addr",
+          "name": "Single-Address Location Consolidation",
+          "status": "complete",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "rj-campus",
+          "name": "Campus Target Identification",
+          "status": "complete",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "rj-billing",
+          "name": "Account Billing Verification",
+          "status": "complete",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "rj-commissions",
+          "name": "Commission Data Pull",
+          "status": "complete",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "rj-subsidies",
+          "name": "Subsidy Data Pull",
+          "status": "complete",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "rj-wb-plan",
+          "name": "Workbook Planning",
+          "status": "complete",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "rj-wb-gen",
+          "name": "Initial Workbook Generation",
+          "status": "complete",
+          "effortRange": "3-6h"
+        },
+        {
+          "id": "rj-acct-lock",
+          "name": "Account and Asset Lock",
+          "status": "complete",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "rj-plano-lock",
+          "name": "Planogram Lock",
+          "status": "complete",
+          "effortRange": "1-3h"
+        }
       ],
       "updated": "2026-04-03",
       "notes": ""
@@ -286,19 +383,74 @@
       "deadline": "2026-07-31",
       "status": "active",
       "tasks": [
-        { "id": "ep-products", "name": "Product Validation", "status": "complete", "effortRange": "2-6h" },
-        { "id": "ep-addresses", "name": "Address Validation", "status": "pending", "effortRange": "1-3h" },
-        { "id": "ep-single-addr", "name": "Single-Address Location Consolidation", "status": "pending", "effortRange": "2-4h" },
-        { "id": "ep-campus", "name": "Campus Target Identification", "status": "pending", "effortRange": "2-4h" },
-        { "id": "ep-billing", "name": "Account Billing Verification", "status": "pending", "effortRange": "2-4h" },
-        { "id": "ep-commissions", "name": "Commission Data Pull", "status": "pending", "effortRange": "1-3h" },
-        { "id": "ep-subsidies", "name": "Subsidy Data Pull", "status": "pending", "effortRange": "1-3h" },
-        { "id": "ep-wb-plan", "name": "Workbook Planning", "status": "pending", "effortRange": "2-4h" },
-        { "id": "ep-wb-gen", "name": "Initial Workbook Generation", "status": "pending", "effortRange": "3-6h" },
-        { "id": "ep-acct-lock", "name": "Account and Asset Lock", "status": "pending", "effortRange": "2-4h" },
-        { "id": "ep-plano-lock", "name": "Planogram Lock", "status": "pending", "effortRange": "1-3h" }
+        {
+          "id": "ep-products",
+          "name": "Product Validation",
+          "status": "complete",
+          "effortRange": "2-6h"
+        },
+        {
+          "id": "ep-addresses",
+          "name": "Address Validation",
+          "status": "pending",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "ep-single-addr",
+          "name": "Single-Address Location Consolidation",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "ep-campus",
+          "name": "Campus Target Identification",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "ep-billing",
+          "name": "Account Billing Verification",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "ep-commissions",
+          "name": "Commission Data Pull",
+          "status": "pending",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "ep-subsidies",
+          "name": "Subsidy Data Pull",
+          "status": "pending",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "ep-wb-plan",
+          "name": "Workbook Planning",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "ep-wb-gen",
+          "name": "Initial Workbook Generation",
+          "status": "pending",
+          "effortRange": "3-6h"
+        },
+        {
+          "id": "ep-acct-lock",
+          "name": "Account and Asset Lock",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "ep-plano-lock",
+          "name": "Planogram Lock",
+          "status": "pending",
+          "effortRange": "1-3h"
+        }
       ],
-      "updated": "2026-04-03",
+      "updated": "2026-04-02",
       "notes": ""
     },
     {
@@ -312,19 +464,74 @@
       "deadline": "2026-08-31",
       "status": "active",
       "tasks": [
-        { "id": "smg-products", "name": "Product Validation", "status": "pending", "effortRange": "2-6h" },
-        { "id": "smg-addresses", "name": "Address Validation", "status": "pending", "effortRange": "1-3h" },
-        { "id": "smg-single-addr", "name": "Single-Address Location Consolidation", "status": "pending", "effortRange": "2-4h" },
-        { "id": "smg-campus", "name": "Campus Target Identification", "status": "pending", "effortRange": "2-4h" },
-        { "id": "smg-billing", "name": "Account Billing Verification", "status": "pending", "effortRange": "2-4h" },
-        { "id": "smg-commissions", "name": "Commission Data Pull", "status": "pending", "effortRange": "1-3h" },
-        { "id": "smg-subsidies", "name": "Subsidy Data Pull", "status": "pending", "effortRange": "1-3h" },
-        { "id": "smg-wb-plan", "name": "Workbook Planning", "status": "pending", "effortRange": "2-4h" },
-        { "id": "smg-wb-gen", "name": "Initial Workbook Generation", "status": "pending", "effortRange": "3-6h" },
-        { "id": "smg-acct-lock", "name": "Account and Asset Lock", "status": "pending", "effortRange": "2-4h" },
-        { "id": "smg-plano-lock", "name": "Planogram Lock", "status": "pending", "effortRange": "1-3h" }
+        {
+          "id": "smg-products",
+          "name": "Product Validation",
+          "status": "pending",
+          "effortRange": "2-6h"
+        },
+        {
+          "id": "smg-addresses",
+          "name": "Address Validation",
+          "status": "pending",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "smg-single-addr",
+          "name": "Single-Address Location Consolidation",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "smg-campus",
+          "name": "Campus Target Identification",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "smg-billing",
+          "name": "Account Billing Verification",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "smg-commissions",
+          "name": "Commission Data Pull",
+          "status": "pending",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "smg-subsidies",
+          "name": "Subsidy Data Pull",
+          "status": "pending",
+          "effortRange": "1-3h"
+        },
+        {
+          "id": "smg-wb-plan",
+          "name": "Workbook Planning",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "smg-wb-gen",
+          "name": "Initial Workbook Generation",
+          "status": "pending",
+          "effortRange": "3-6h"
+        },
+        {
+          "id": "smg-acct-lock",
+          "name": "Account and Asset Lock",
+          "status": "pending",
+          "effortRange": "2-4h"
+        },
+        {
+          "id": "smg-plano-lock",
+          "name": "Planogram Lock",
+          "status": "pending",
+          "effortRange": "1-3h"
+        }
       ],
-      "updated": "2026-04-03",
+      "updated": "2026-04-01",
       "notes": ""
     },
     {
@@ -437,7 +644,15 @@
     }
   ],
   "groups": [
-    { "id": "ids", "name": "Imperial Data Studio", "category": "application" },
-    { "id": "vendsys-transition", "name": "Vendsys Transition", "category": "vendsys" }
+    {
+      "id": "ids",
+      "name": "Imperial Data Studio",
+      "category": "application"
+    },
+    {
+      "id": "vendsys-transition",
+      "name": "Vendsys Transition",
+      "category": "vendsys"
+    }
   ]
 }
