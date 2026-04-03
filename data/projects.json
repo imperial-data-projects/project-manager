@@ -532,6 +532,36 @@
       "notes": ""
     },
     {
+      "id": "vendsys-number-generator",
+      "name": "Vendsys Number Generator and Tracker",
+      "category": "application",
+      "domain": "operations",
+      "parent": null,
+      "stakeholder": "",
+      "priority": "high",
+      "deadline": "2026-04-07",
+      "status": "active",
+      "currentPhase": null,
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
+      "phases": {
+        "interview": "pending",
+        "workflow": "pending",
+        "wireframe": "pending",
+        "mockups": "pending",
+        "backend": "pending",
+        "frontend": "pending",
+        "dev-release": "pending",
+        "testing": "pending",
+        "production": "pending"
+      },
+      "tasks": [],
+      "updated": "",
+      "notes": ""
+    },
+    {
       "id": "ids-platform",
       "name": "Imperial Data Studio",
       "category": "application",
