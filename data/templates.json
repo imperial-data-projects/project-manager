@@ -139,36 +139,17 @@
     "vendsys": {
       "label": "Vendsys Transition",
       "defaultTasks": [
-        {
-          "name": "Google validate all addresses",
-          "effortRange": "1-3h",
-          "description": "Run all branch addresses through Google Places API for validation and standardization."
-        },
-        {
-          "name": "Collapse locations to 1 address",
-          "effortRange": "2-4h",
-          "description": "Deduplicate locations sharing the same physical address into single location records."
-        },
-        {
-          "name": "Verify product catalog parity",
-          "effortRange": "2-6h",
-          "description": "Compare product catalog between legacy VMS and new system. Flag discrepancies."
-        },
-        {
-          "name": "Generate and implement location codes",
-          "effortRange": "1-3h",
-          "description": "Create standardized location code scheme for the branch and apply to all locations."
-        },
-        {
-          "name": "Accounts for initial review",
-          "effortRange": "2-4h",
-          "description": "Prepare account data export for branch stakeholder review before migration."
-        },
-        {
-          "name": "Assets for initial review",
-          "effortRange": "2-4h",
-          "description": "Prepare asset/equipment data export for branch stakeholder review before migration."
-        }
+        { "name": "Product Validation", "effortRange": "2-6h", "description": "Verify product catalog parity between legacy VMS and target system." },
+        { "name": "Address Validation", "effortRange": "1-3h", "description": "Validate all branch addresses through Google Places API." },
+        { "name": "Single-Address Location Consolidation", "effortRange": "2-4h", "description": "Consolidate multi-entry locations to a single validated address per site." },
+        { "name": "Campus Target Identification", "effortRange": "2-4h", "description": "Identify and implement campus-level targeting for multi-building locations." },
+        { "name": "Account Billing Verification", "effortRange": "2-4h", "description": "Validate account billing information against source system records." },
+        { "name": "Commission Data Pull", "effortRange": "1-3h", "description": "Extract and validate commission structures for branch accounts." },
+        { "name": "Subsidy Data Pull", "effortRange": "1-3h", "description": "Extract and validate subsidy arrangements for branch accounts." },
+        { "name": "Workbook Planning", "effortRange": "2-4h", "description": "Define workbook structure and transition plan for branch data migration." },
+        { "name": "Initial Workbook Generation", "effortRange": "3-6h", "description": "Create migration workbook with initial Orange sheet population." },
+        { "name": "Account and Asset Lock", "effortRange": "2-4h", "description": "Freeze account and asset data for final migration snapshot." },
+        { "name": "Planogram Lock", "effortRange": "1-3h", "description": "Freeze planogram configurations for final migration snapshot." }
       ]
     }
   },
