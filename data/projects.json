@@ -167,13 +167,9 @@
       "priority": "medium",
       "deadline": "2026-04-30",
       "status": "active",
-      "currentPhase": null,
-      "statusChip": {
-        "type": "not-started",
-        "label": "Not Started"
-      },
+      "currentPhase": "interview",
       "phases": {
-        "interview": "pending",
+        "interview": "in-progress",
         "workflow": "pending",
         "wireframe": "pending",
         "mockups": "pending",
