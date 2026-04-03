@@ -1,0 +1,183 @@
+{
+  "lifecycles": {
+    "application": {
+      "label": "Application",
+      "phases": [
+        {
+          "id": "interview",
+          "label": "Stakeholder Interview",
+          "stakeholderLabel": "Requirements Gathering",
+          "order": 1,
+          "description": "Sit down with primary stakeholder, fill out template interview. Define goals, users, workflows, pain points.",
+          "effortRange": "1-3h",
+          "waitType": "scheduling"
+        },
+        {
+          "id": "workflow",
+          "label": "Workflow Assignment",
+          "stakeholderLabel": "Workflow Design",
+          "order": 2,
+          "description": "From interview output, define app screens, user workflows, data model. Internal planning step.",
+          "effortRange": "2-4h",
+          "waitType": null
+        },
+        {
+          "id": "wireframe",
+          "label": "Wireframe",
+          "stakeholderLabel": "Layout Design",
+          "order": 3,
+          "description": "Create wireframe layouts for each screen. Low-fidelity, focused on structure and flow.",
+          "effortRange": "2-6h",
+          "waitType": null
+        },
+        {
+          "id": "mockups",
+          "label": "Mockups Sent",
+          "stakeholderLabel": "Design Review",
+          "order": 4,
+          "description": "High-fidelity mockups sent to stakeholder for approval. Gate: requires stakeholder sign-off.",
+          "effortRange": "1-2h",
+          "waitType": "approval"
+        },
+        {
+          "id": "backend",
+          "label": "Backend Build",
+          "stakeholderLabel": "Core Development",
+          "order": 5,
+          "description": "API endpoints, database schema, business logic, integrations. Heaviest development phase.",
+          "effortRange": "8-40h",
+          "waitType": null
+        },
+        {
+          "id": "frontend",
+          "label": "Frontend Build",
+          "stakeholderLabel": "Interface Development",
+          "order": 6,
+          "description": "React UI implementation. Components, forms, data display, interactions.",
+          "effortRange": "8-40h",
+          "waitType": null
+        },
+        {
+          "id": "dev-release",
+          "label": "Dev Release",
+          "stakeholderLabel": "Preview Release",
+          "order": 7,
+          "description": "Deploy to development environment. Stakeholder gets first hands-on access.",
+          "effortRange": "1-3h",
+          "waitType": null
+        },
+        {
+          "id": "testing",
+          "label": "Testing & Iteration",
+          "stakeholderLabel": "Testing & Feedback",
+          "order": 8,
+          "description": "Stakeholder testing, bug reports, refinement cycles. Duration depends on feedback volume.",
+          "effortRange": "4-20h",
+          "waitType": "feedback"
+        },
+        {
+          "id": "production",
+          "label": "Production Release",
+          "stakeholderLabel": "Go Live",
+          "order": 9,
+          "description": "Final deployment to production. Communication to users, monitoring.",
+          "effortRange": "1-3h",
+          "waitType": null
+        }
+      ]
+    },
+    "powerbi": {
+      "label": "Power BI Dashboard",
+      "phases": [
+        {
+          "id": "interview",
+          "label": "Stakeholder Interview",
+          "stakeholderLabel": "Requirements Gathering",
+          "order": 1,
+          "description": "Template interview with primary stakeholder. Define KPIs, data sources, audience.",
+          "effortRange": "1-2h",
+          "waitType": "scheduling"
+        },
+        {
+          "id": "kpi-planning",
+          "label": "Page & KPI Planning",
+          "stakeholderLabel": "Dashboard Planning",
+          "order": 2,
+          "description": "Define number of pages, KPIs per page, data relationships. Submit to stakeholder for approval.",
+          "effortRange": "2-4h",
+          "waitType": "approval"
+        },
+        {
+          "id": "mockup-review",
+          "label": "Mockup Review",
+          "stakeholderLabel": "Layout Review",
+          "order": 3,
+          "description": "Create and submit page layout mockups. Gate: requires stakeholder sign-off.",
+          "effortRange": "2-4h",
+          "waitType": "approval"
+        },
+        {
+          "id": "build",
+          "label": "Build",
+          "stakeholderLabel": "Development",
+          "order": 4,
+          "description": "Build report pages in Power BI against approved layouts and KPI register.",
+          "effortRange": "4-16h",
+          "waitType": null
+        },
+        {
+          "id": "release",
+          "label": "Release",
+          "stakeholderLabel": "Go Live",
+          "order": 5,
+          "description": "Publish to Power BI workspace, configure refresh schedule, share with stakeholders.",
+          "effortRange": "1-2h",
+          "waitType": null
+        }
+      ]
+    },
+    "vendsys": {
+      "label": "Vendsys Transition",
+      "defaultTasks": [
+        {
+          "name": "Google validate all addresses",
+          "effortRange": "1-3h",
+          "description": "Run all branch addresses through Google Places API for validation and standardization."
+        },
+        {
+          "name": "Collapse locations to 1 address",
+          "effortRange": "2-4h",
+          "description": "Deduplicate locations sharing the same physical address into single location records."
+        },
+        {
+          "name": "Verify product catalog parity",
+          "effortRange": "2-6h",
+          "description": "Compare product catalog between legacy VMS and new system. Flag discrepancies."
+        },
+        {
+          "name": "Generate and implement location codes",
+          "effortRange": "1-3h",
+          "description": "Create standardized location code scheme for the branch and apply to all locations."
+        },
+        {
+          "name": "Accounts for initial review",
+          "effortRange": "2-4h",
+          "description": "Prepare account data export for branch stakeholder review before migration."
+        },
+        {
+          "name": "Assets for initial review",
+          "effortRange": "2-4h",
+          "description": "Prepare asset/equipment data export for branch stakeholder review before migration."
+        }
+      ]
+    }
+  },
+  "domains": {
+    "operations": { "label": "Operations", "color": "ocean" },
+    "customer-svc": { "label": "Customer Service", "color": "indigo" },
+    "merchandising": { "label": "Merchandising", "color": "amethyst" },
+    "logistics": { "label": "Logistics", "color": "rose" },
+    "accounting": { "label": "Accounting", "color": "umber" },
+    "executive": { "label": "Executive", "color": "slate" }
+  }
+}

@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Portfolio — Mockup v1</title>
+  <style>
+    /* ============================================================
+       IMPERIAL DESIGN TOKENS
+       ============================================================ */
+    :root {
+      /* Base palette (light) */
+      --background: #F8FAFC;
+      --foreground: #0F172A;
+      --card: #FFFFFF;
+      --card-foreground: #0F172A;
+      --muted: #F1F5F9;
+      --muted-foreground: #5E6E82;
+      --border: #E2E8F0;
+
+      /* Domain accents (light) */
+      --domain-ocean: #2D6F99;
+      --domain-indigo: #5B41E3;
+      --domain-amethyst: #9D21B6;
+      --domain-rose: #BA1358;
+      --domain-umber: #634632;
+      --domain-slate: #334155;
+
+      /* Feedback (light) */
+      --success-base: #16A34A;
+      --success-bg: #DCFCE7;
+      --success-text: #166534;
+      --warning-base: #A16207;
+      --warning-bg: #FEF9C3;
+      --warning-text: #854D0E;
+      --info-base: #3B82F6;
+      --info-bg: #DBEAFE;
+      --info-text: #1E40AF;
+
+      /* Layout */
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --radius-sm: 6px;
+      --radius-full: 9999px;
+    }
+
+    .dark {
+      --background: #0F172A;
+      --foreground: #F8FAFC;
+      --card: #1E293B;
+      --card-foreground: #F8FAFC;
+      --muted: #334155;
+      --muted-foreground: #9BADC0;
+      --border: #475569;
+
+      --domain-ocean: #4DCDFF;
+      --domain-indigo: #8A89F6;
+      --domain-amethyst: #E27CFF;
+      --domain-rose: #F7719D;
+      --domain-umber: #B89781;
+      --domain-slate: #94A3B8;
+
+      --success-base: #4ADE80;
+      --success-bg: #1B372B;
+      --success-text: #BBF7D0;
+      --warning-base: #FACC15;
+      --warning-bg: #372B1B;
+      --warning-text: #FEF08A;
+      --info-base: #60A5FA;
+      --info-bg: #192438;
+      --info-text: #BFDBFE;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       THEME TOGGLE
+       ============================================================ */
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      color: var(--foreground);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .page-header {
+      margin-bottom: 32px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       PORTFOLIO SUMMARY
+       ============================================================ */
+    .portfolio-summary {
+      margin-bottom: 40px;
+    }
+
+    /* Top row: big stat cards */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      font-weight: 500;
+    }
+
+    .stat-card.active-card .stat-number {
+      color: var(--foreground);
+    }
+
+    .stat-card.progress-card .stat-number {
+      color: var(--info-base);
+    }
+
+    .stat-card.attention-card .stat-number {
+      color: var(--warning-base);
+    }
+
+    .stat-card.done-card .stat-number {
+      color: var(--success-base);
+    }
+
+    /* Attention items row */
+    .attention-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 24px;
+    }
+
+    .attention-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .attention-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .attention-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .attention-dot.waiting {
+      background: var(--warning-base);
+    }
+
+    .attention-dot.deadline {
+      background: #EF4444;
+    }
+
+    .dark .attention-dot.deadline {
+      background: #F87171;
+    }
+
+    .attention-item .attention-detail {
+      color: var(--muted-foreground);
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      .stat-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .stat-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ============================================================
+       CATEGORY SECTIONS
+       ============================================================ */
+    .category-section {
+      margin-bottom: 40px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .category-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .category-count {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       PROJECT CARDS
+       ============================================================ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--muted-foreground);
+    }
+
+    .card-accent {
+      height: 3px;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 16px 20px;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .project-name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .domain-badge {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      opacity: 0.9;
+    }
+
+    .project-parent {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      margin-bottom: 14px;
+    }
+
+    /* ============================================================
+       PHASE STEPPER (App / Power BI cards)
+       ============================================================ */
+    .phase-stepper {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .phase-dot {
+      width: 20px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--muted);
+      transition: background 0.2s ease;
+    }
+
+    .phase-dot.complete {
+      background: var(--domain-color);
+    }
+
+    .phase-dot.current {
+      background: var(--domain-color);
+      opacity: 0.5;
+    }
+
+    .phase-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .phase-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .phase-count {
+      font-size: 13px;
+      color: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       PROGRESS BAR (Vendsys cards)
+       ============================================================ */
+    .progress-bar-container {
+      margin-bottom: 12px;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 6px;
+      background: var(--muted);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+
+    .progress-bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       CARD FOOTER
+       ============================================================ */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    .card-footer .task-summary {
+      font-size: 13px;
+    }
+
+    .card-footer .updated {
+      font-size: 12px;
+    }
+
+    /* ============================================================
+       STATUS CHIPS
+       ============================================================ */
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+
+    .status-chip .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Awaiting stakeholder action */
+    .status-chip.awaiting {
+      background: var(--warning-bg);
+      color: var(--warning-text);
+    }
+    .status-chip.awaiting .chip-dot {
+      background: var(--warning-base);
+    }
+
+    /* Blocked — waiting on external dependency */
+    .status-chip.blocked {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+    .dark .status-chip.blocked {
+      background: #371B1B;
+      color: #FECACA;
+    }
+    .status-chip.blocked .chip-dot {
+      background: #EF4444;
+    }
+    .dark .status-chip.blocked .chip-dot {
+      background: #F87171;
+    }
+
+    /* Not started */
+    .status-chip.not-started {
+      background: var(--muted);
+      color: var(--muted-foreground);
+    }
+    .status-chip.not-started .chip-dot {
+      background: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       EXPAND DETAIL
+       ============================================================ */
+    .card-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      border-top: 0px solid var(--border);
+    }
+
+    .project-card.expanded .card-detail {
+      max-height: 600px;
+      border-top-width: 1px;
+      padding: 16px 20px;
+    }
+
+    /* Phase stepper expanded */
+    .detail-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .detail-phase-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .detail-phase-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .detail-phase-icon.complete {
+      background: var(--success-bg);
+      color: var(--success-base);
+    }
+
+    .detail-phase-icon.current {
+      background: var(--info-bg);
+      color: var(--info-base);
+    }
+
+    .detail-phase-icon.pending {
+      background: var(--muted);
+      color: var(--muted-foreground);
+    }
+
+    .detail-phase-name {
+      flex: 1;
+    }
+
+    .detail-phase-name.pending-text {
+      color: var(--muted-foreground);
+    }
+
+    /* Task list */
+    .detail-tasks {
+      margin-top: 12px;
+    }
+
+    .detail-tasks-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted-foreground);
+      margin-bottom: 8px;
+    }
+
+    .task-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+
+    .task-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .task-icon.complete {
+      background: var(--success-bg);
+      color: var(--success-base);
+    }
+
+    .task-icon.in-progress {
+      background: var(--info-bg);
+      color: var(--info-base);
+    }
+
+    .task-icon.pending {
+      background: var(--muted);
+      color: var(--muted-foreground);
+    }
+
+    .subtask-row {
+      padding-left: 28px;
+    }
+
+    .task-name.pending-text {
+      color: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       DOMAIN COLOR UTILITIES
+       ============================================================ */
+    .domain-ocean { --domain-color: var(--domain-ocean); }
+    .domain-indigo { --domain-color: var(--domain-indigo); }
+    .domain-amethyst { --domain-color: var(--domain-amethyst); }
+    .domain-rose { --domain-color: var(--domain-rose); }
+    .domain-umber { --domain-color: var(--domain-umber); }
+    .domain-slate { --domain-color: var(--domain-slate); }
+
+    .badge-ocean { background: #2D6F9918; color: var(--domain-ocean); }
+    .badge-indigo { background: #5B41E318; color: var(--domain-indigo); }
+    .badge-amethyst { background: #9D21B618; color: var(--domain-amethyst); }
+    .badge-rose { background: #BA135818; color: var(--domain-rose); }
+    .badge-umber { background: #63463218; color: var(--domain-umber); }
+    .badge-slate { background: #33415518; color: var(--domain-slate); }
+
+    .dark .badge-ocean { background: #4DCDFF18; }
+    .dark .badge-indigo { background: #8A89F618; }
+    .dark .badge-amethyst { background: #E27CFF18; }
+    .dark .badge-rose { background: #F7719D18; }
+    .dark .badge-umber { background: #B8978118; }
+    .dark .badge-slate { background: #94A3B818; }
+
+    /* ============================================================
+       DEADLINE / TARGET BADGE
+       ============================================================ */
+    .deadline-badge {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ============================================================
+       COMPLETED SECTION
+       ============================================================ */
+    .completed-section {
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .completed-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: var(--muted-foreground);
+      font-size: 15px;
+      font-weight: 500;
+      font-family: inherit;
+    }
+
+    .completed-toggle:hover {
+      color: var(--foreground);
+    }
+
+    .completed-toggle .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+      font-size: 12px;
+    }
+
+    .completed-section.open .toggle-arrow {
+      transform: rotate(90deg);
+    }
+
+    .completed-count {
+      background: var(--success-bg);
+      color: var(--success-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .completed-grid {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .completed-section.open .completed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card.completed-card {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    .project-card.completed-card:hover {
+      border-color: var(--border);
+      opacity: 0.85;
+    }
+
+    .completed-bar-fill {
+      background: var(--success-base) !important;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark'); this.textContent = document.documentElement.classList.contains('dark') ? 'Light Mode' : 'Dark Mode'">Light Mode</button>
+
+  <div class="page">
+    <!-- HEADER -->
+    <header class="page-header">
+      <h1 class="page-title">Project Portfolio</h1>
+      <p class="page-subtitle">Data & Development Team</p>
+    </header>
+
+    <!-- PORTFOLIO SUMMARY -->
+    <div class="portfolio-summary">
+      <div class="stat-row">
+        <div class="stat-card active-card">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Active Projects</div>
+        </div>
+        <div class="stat-card progress-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">In Progress</div>
+        </div>
+        <div class="stat-card attention-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Awaiting Action</div>
+        </div>
+        <div class="stat-card done-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Completed, In Maintenance</div>
+        </div>
+      </div>
+      <div class="attention-row">
+        <div class="attention-items">
+          <div class="attention-item">
+            <span class="attention-dot waiting"></span>
+            <span>Executive KPI Scorecard</span>
+            <span class="status-chip awaiting"><span class="chip-dot"></span>Submitted for Approval</span>
+          </div>
+          <div class="attention-item">
+            <span class="attention-dot waiting"></span>
+            <span>Route Optimizer</span>
+            <span class="status-chip awaiting"><span class="chip-dot"></span>Awaiting Scheduling</span>
+          </div>
+          <div class="attention-item">
+            <span class="attention-dot deadline"></span>
+            <span>Inventory Sync</span>
+            <span class="status-chip blocked"><span class="chip-dot"></span>Blocked</span>
+            <span class="attention-detail">Waiting on warehouse schema update</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         APPLICATIONS
+         ============================================ -->
+    <section class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Applications</h2>
+        <span class="category-count">6 projects</span>
+      </div>
+      <div class="card-grid">
+
+        <!-- Card 1: App — mid-lifecycle, high priority -->
+        <div class="project-card domain-indigo" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-indigo)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Pricing Manager v3</span>
+              <span class="domain-badge badge-indigo">Customer Svc</span>
+            </div>
+            <div class="project-parent">Standalone Application &middot; Target: May 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Interface Development</span>
+              <span class="phase-count">Phase 6 of 9</span>
+            </div>
+            <div class="card-footer">
+              <span class="task-summary">3 of 5 tasks in phase</span>
+              <span class="updated">Updated Apr 2</span>
+            </div>
+          </div>
+          <div class="card-detail">
+            <div class="detail-phases">
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Requirements Gathering</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Workflow Design</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Layout Design</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Design Review</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Core Development</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon current">&#9679;</div>
+                <span class="detail-phase-name"><strong>Interface Development</strong></span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Preview Release</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Testing & Feedback</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Go Live</span>
+              </div>
+            </div>
+            <div class="detail-tasks">
+              <div class="detail-tasks-title">Current Phase Tasks</div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Component library setup</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Search & filter interface</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Account detail view</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon in-progress">&#9679;</div>
+                <span class="task-name">Submission workflow</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Admin panel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: IDS platform module — early lifecycle -->
+        <div class="project-card domain-umber" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-umber)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Revenue Module</span>
+              <span class="domain-badge badge-umber">Accounting</span>
+            </div>
+            <div class="project-parent">Data Studio Platform &middot; Target: June 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Layout Design</span>
+              <span class="phase-count">Phase 3 of 9</span>
+            </div>
+            <div class="card-footer">
+              <span class="task-summary">1 of 3 tasks in phase</span>
+              <span class="updated">Updated Apr 1</span>
+            </div>
+          </div>
+          <div class="card-detail">
+            <div class="detail-phases">
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Requirements Gathering</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Workflow Design</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon current">&#9679;</div>
+                <span class="detail-phase-name"><strong>Layout Design</strong></span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Design Review</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Core Development</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Interface Development</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Preview Release</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Testing & Feedback</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Go Live</span>
+              </div>
+            </div>
+            <div class="detail-tasks">
+              <div class="detail-tasks-title">Current Phase Tasks</div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Dashboard wireframe</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon in-progress">&#9679;</div>
+                <span class="task-name">Detail view wireframe</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Export flow wireframe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: App nearing completion -->
+        <div class="project-card domain-ocean" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-ocean)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Asset Validator</span>
+              <span class="domain-badge badge-ocean">Operations</span>
+            </div>
+            <div class="project-parent">Standalone Application &middot; Target: April 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Testing & Feedback</span>
+              <span class="phase-count">Phase 8 of 9</span>
+            </div>
+            <div class="card-footer">
+              <span class="task-summary">2 of 4 tasks in phase</span>
+              <span class="updated">Updated Mar 31</span>
+            </div>
+          </div>
+          <div class="card-detail"></div>
+        </div>
+
+        <!-- Card 4: Blocked app -->
+        <div class="project-card domain-amethyst" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-amethyst)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Inventory Sync</span>
+              <span class="domain-badge badge-amethyst">Merchandising</span>
+            </div>
+            <div class="project-parent">Standalone Application &middot; Target: May 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Core Development</span>
+              <span class="phase-count">Phase 5 of 9</span>
+            </div>
+            <div class="card-footer">
+              <span class="status-chip blocked"><span class="chip-dot"></span>Blocked</span>
+              <span class="updated">Updated Mar 29</span>
+            </div>
+          </div>
+          <div class="card-detail"></div>
+        </div>
+
+        <!-- Card 5: Awaiting scheduling -->
+        <div class="project-card domain-rose" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-rose)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Route Optimizer</span>
+              <span class="domain-badge badge-rose">Logistics</span>
+            </div>
+            <div class="project-parent">Standalone Application &middot; Target: August 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Requirements Gathering</span>
+              <span class="phase-count">Phase 1 of 9</span>
+            </div>
+            <div class="card-footer">
+              <span class="status-chip awaiting"><span class="chip-dot"></span>Awaiting Scheduling</span>
+              <span class="updated">Updated Mar 28</span>
+            </div>
+          </div>
+          <div class="card-detail"></div>
+        </div>
+
+        <!-- Card 6: Not started yet -->
+        <div class="project-card domain-ocean" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-ocean)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Fleet Tracker</span>
+              <span class="domain-badge badge-ocean">Operations</span>
+            </div>
+            <div class="project-parent">Standalone Application &middot; Target: Q3 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label" style="color: var(--muted-foreground)">Not yet started</span>
+              <span class="phase-count">Phase 0 of 9</span>
+            </div>
+            <div class="card-footer">
+              <span class="status-chip not-started"><span class="chip-dot"></span>Not Started</span>
+              <span class="updated">Added Mar 20</span>
+            </div>
+          </div>
+          <div class="card-detail"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         POWER BI DASHBOARDS
+         ============================================ -->
+    <section class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Power BI Dashboards</h2>
+        <span class="category-count">5 projects</span>
+      </div>
+      <div class="card-grid">
+
+        <!-- Dashboard 1: mid-build -->
+        <div class="project-card domain-amethyst" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-amethyst)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Product Mix Analysis</span>
+              <span class="domain-badge badge-amethyst">Merchandising</span>
+            </div>
+            <div class="project-parent">Standalone Dashboard &middot; Target: April 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Development</span>
+              <span class="phase-count">Phase 4 of 5</span>
+            </div>
+            <div class="card-footer">
+              <span class="task-summary">4 of 6 pages built</span>
+              <span class="updated">Updated Apr 2</span>
+            </div>
+          </div>
+          <div class="card-detail">
+            <div class="detail-phases">
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Requirements Gathering</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Dashboard Planning</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon complete">&#10003;</div>
+                <span class="detail-phase-name">Layout Review</span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon current">&#9679;</div>
+                <span class="detail-phase-name"><strong>Development</strong></span>
+              </div>
+              <div class="detail-phase-row">
+                <div class="detail-phase-icon pending">&#8226;</div>
+                <span class="detail-phase-name pending-text">Go Live</span>
+              </div>
+            </div>
+            <div class="detail-tasks">
+              <div class="detail-tasks-title">Pages</div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Executive Summary</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Category Breakdown</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Regional View</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Trend Analysis</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon in-progress">&#9679;</div>
+                <span class="task-name">Vendor Comparison</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Drill-Through Detail</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard 2: awaiting approval -->
+        <div class="project-card domain-slate" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-slate)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Executive KPI Scorecard</span>
+              <span class="domain-badge badge-slate">Executive</span>
+            </div>
+            <div class="project-parent">Standalone Dashboard &middot; Target: June 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+              <div class="phase-dot"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Dashboard Planning</span>
+              <span class="phase-count">Phase 2 of 5</span>
+            </div>
+            <div class="card-footer">
+              <span class="status-chip awaiting"><span class="chip-dot"></span>Submitted for Approval</span>
+              <span class="updated">Updated Mar 30</span>
+            </div>
+          </div>
+          <div class="card-detail"></div>
+        </div>
+
+        <!-- Dashboard 3: near complete -->
+        <div class="project-card domain-ocean" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-ocean)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Service Level Dashboard</span>
+              <span class="domain-badge badge-ocean">Operations</span>
+            </div>
+            <div class="project-parent">Standalone Dashboard &middot; Target: April 2026</div>
+            <div class="phase-stepper">
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot complete"></div>
+              <div class="phase-dot current"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label">Go Live</span>
+              <span class="phase-count">Phase 5 of 5</span>
+            </div>
+            <div class="card-footer">
+              <span class="task-summary">Publishing this week</span>
+              <span class="updated">Updated Apr 3</span>
+            </div>
+          </div>
+          <div class="card-detail"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         VENDSYS TRANSITION
+         ============================================ -->
+    <section class="category-section">
+      <div class="category-header">
+        <h2 class="category-title">Vendsys Transition</h2>
+        <span class="category-count">7 branches</span>
+      </div>
+      <div class="card-grid">
+
+        <!-- Vendsys 1: El Paso — good progress, deadline -->
+        <div class="project-card domain-ocean" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-ocean)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">El Paso</span>
+              <span class="domain-badge badge-ocean">Operations</span>
+            </div>
+            <div class="project-parent">Vendsys Transition &middot; Target: July 2026</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 67%; background: var(--domain-ocean)"></div>
+              </div>
+              <div class="progress-bar-label">
+                <span>8 of 12 tasks</span>
+                <span>67%</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span></span>
+              <span class="updated">Updated Apr 2</span>
+            </div>
+          </div>
+          <div class="card-detail">
+            <div class="detail-tasks">
+              <div class="detail-tasks-title">Tasks</div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Google validate all addresses</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Collapse locations to 1 address</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Generate location codes</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Verify product catalog parity</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Accounts for initial review</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Assets for initial review</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Commission structure mapping</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Route plan validation</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon in-progress">&#9679;</div>
+                <span class="task-name">Historical data migration prep</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">User account provisioning</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Parallel run validation</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Go-live cutover checklist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vendsys 2: SMG — earlier progress, deadline -->
+        <div class="project-card domain-ocean" onclick="this.classList.toggle('expanded')">
+          <div class="card-accent" style="background: var(--domain-ocean)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">SMG</span>
+              <span class="domain-badge badge-ocean">Operations</span>
+            </div>
+            <div class="project-parent">Vendsys Transition &middot; Target: August 2026</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 33%; background: var(--domain-ocean)"></div>
+              </div>
+              <div class="progress-bar-label">
+                <span>4 of 12 tasks</span>
+                <span>33%</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span></span>
+              <span class="updated">Updated Apr 1</span>
+            </div>
+          </div>
+          <div class="card-detail">
+            <div class="detail-tasks">
+              <div class="detail-tasks-title">Tasks</div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Google validate all addresses</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Collapse locations to 1 address</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Generate location codes</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon in-progress">&#9679;</div>
+                <span class="task-name">Verify product catalog parity</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon complete">&#10003;</div>
+                <span class="task-name">Accounts for initial review</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Assets for initial review</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Commission structure mapping</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Route plan validation</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Historical data migration prep</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">User account provisioning</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Parallel run validation</span>
+              </div>
+              <div class="task-row">
+                <div class="task-icon pending">&#8226;</div>
+                <span class="task-name pending-text">Go-live cutover checklist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         COMPLETED PROJECTS (collapsed by default)
+         ============================================ -->
+    <section class="completed-section" id="completed-section">
+      <button class="completed-toggle" onclick="document.getElementById('completed-section').classList.toggle('open')">
+        <span class="toggle-arrow">&#9654;</span>
+        Completed Projects
+        <span class="completed-count">5</span>
+      </button>
+      <div class="completed-grid">
+
+        <!-- Completed: Vendsys branch -->
+        <div class="project-card completed-card domain-ocean">
+          <div class="card-accent" style="background: var(--success-base)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Metro West</span>
+              <span class="domain-badge badge-ocean">Operations</span>
+            </div>
+            <div class="project-parent">Vendsys Transition</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill completed-bar-fill" style="width: 100%"></div>
+              </div>
+              <div class="progress-bar-label">
+                <span>10 of 10 tasks</span>
+                <span>Completed Mar 15</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: App -->
+        <div class="project-card completed-card domain-indigo">
+          <div class="card-accent" style="background: var(--success-base)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Feedback Portal</span>
+              <span class="domain-badge badge-indigo">Customer Svc</span>
+            </div>
+            <div class="project-parent">Standalone Application</div>
+            <div class="phase-stepper">
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label" style="color: var(--success-base)">Complete</span>
+              <span class="phase-count">Completed Feb 20</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: Power BI -->
+        <div class="project-card completed-card domain-umber">
+          <div class="card-accent" style="background: var(--success-base)"></div>
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="project-name">Revenue Trends</span>
+              <span class="domain-badge badge-umber">Accounting</span>
+            </div>
+            <div class="project-parent">Standalone Dashboard</div>
+            <div class="phase-stepper">
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+              <div class="phase-dot" style="background: var(--success-base)"></div>
+            </div>
+            <div class="phase-info">
+              <span class="phase-label" style="color: var(--success-base)">Complete</span>
+              <span class="phase-count">Completed Jan 8</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</body>
+</html>

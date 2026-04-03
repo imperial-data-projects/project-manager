@@ -1,0 +1,48 @@
+@import "@imperial/ui/styles.css";
+@source "../node_modules/@imperial/ui/dist";
+
+@theme {
+  /* Domain accent colors (light) */
+  --color-domain-ocean: #2D6F99;
+  --color-domain-indigo: #5B41E3;
+  --color-domain-amethyst: #9D21B6;
+  --color-domain-rose: #BA1358;
+  --color-domain-umber: #634632;
+  --color-domain-slate: #334155;
+
+  /* Feedback tokens (light) */
+  --color-success-base: #16A34A;
+  --color-success-bg: #DCFCE7;
+  --color-success-text: #166534;
+  --color-warning-base: #A16207;
+  --color-warning-bg: #FEF9C3;
+  --color-warning-text: #854D0E;
+  --color-info-base: #3B82F6;
+  --color-info-bg: #DBEAFE;
+  --color-info-text: #1E40AF;
+  --color-error-base: #EF4444;
+  --color-error-bg: #FEE2E2;
+  --color-error-text: #991B1B;
+}
+
+.dark {
+  --color-domain-ocean: #4DCDFF;
+  --color-domain-indigo: #8A89F6;
+  --color-domain-amethyst: #E27CFF;
+  --color-domain-rose: #F7719D;
+  --color-domain-umber: #B89781;
+  --color-domain-slate: #94A3B8;
+
+  --color-success-base: #4ADE80;
+  --color-success-bg: #1B372B;
+  --color-success-text: #BBF7D0;
+  --color-warning-base: #FACC15;
+  --color-warning-bg: #372B1B;
+  --color-warning-text: #FEF08A;
+  --color-info-base: #60A5FA;
+  --color-info-bg: #192438;
+  --color-info-text: #BFDBFE;
+  --color-error-base: #F87171;
+  --color-error-bg: #371B1B;
+  --color-error-text: #FECACA;
+}
