@@ -1,11 +1,15 @@
-import type { Project, Task, Templates, PhaseTemplate } from '@/types'
+import type { Project, Task, Templates, PhaseTemplate, Lifecycle } from '@/types'
+
+function getLifecycle(project: Project, templates: Templates): Lifecycle {
+  if (project.category === 'auto-report') return templates.lifecycles['auto-report']
+  if (project.category === 'powerbi') return templates.lifecycles.powerbi
+  return templates.lifecycles.application
+}
 
 /** Count completed phases for a lifecycle project */
 export function getPhaseProgress(project: Project, templates: Templates) {
   if (!project.phases) return { completed: 0, total: 0 }
-  const lifecycle = project.category === 'application'
-    ? templates.lifecycles.application
-    : templates.lifecycles.powerbi
+  const lifecycle = getLifecycle(project, templates)
   const total = lifecycle.phases.length
   const completed = lifecycle.phases.filter(p => project.phases?.[p.id] === 'complete').length
   return { completed, total }
@@ -21,9 +25,7 @@ export function getTaskProgress(tasks: Task[]) {
 /** Get current phase template for a lifecycle project */
 export function getCurrentPhaseTemplate(project: Project, templates: Templates): PhaseTemplate | null {
   if (!project.currentPhase || !project.phases) return null
-  const lifecycle = project.category === 'application'
-    ? templates.lifecycles.application
-    : templates.lifecycles.powerbi
+  const lifecycle = getLifecycle(project, templates)
   return lifecycle.phases.find(p => p.id === project.currentPhase) ?? null
 }
 
@@ -35,9 +37,7 @@ export function getCurrentPhaseTasks(project: Project): Task[] {
 
 /** Get the stakeholder label for a phase id */
 export function getPhaseLabel(phaseId: string, project: Project, templates: Templates): string {
-  const lifecycle = project.category === 'application'
-    ? templates.lifecycles.application
-    : templates.lifecycles.powerbi
+  const lifecycle = getLifecycle(project, templates)
   const phase = lifecycle.phases.find(p => p.id === phaseId)
   return phase?.stakeholderLabel ?? phaseId
 }
@@ -45,9 +45,7 @@ export function getPhaseLabel(phaseId: string, project: Project, templates: Temp
 /** Get all phases for a lifecycle project */
 export function getPhases(project: Project, templates: Templates): PhaseTemplate[] {
   if (project.category === 'vendsys') return []
-  const lifecycle = project.category === 'application'
-    ? templates.lifecycles.application
-    : templates.lifecycles.powerbi
+  const lifecycle = getLifecycle(project, templates)
   return lifecycle.phases
 }
 

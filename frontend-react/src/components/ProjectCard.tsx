@@ -32,7 +32,7 @@ export function ProjectCard({ project, templates, groups }: ProjectCardProps) {
   const isVendsys = project.category === 'vendsys'
 
   const subtitle = [
-    groupName ?? (isVendsys ? 'Vendsys Transition' : project.category === 'powerbi' ? 'Standalone Dashboard' : 'Standalone Application'),
+    groupName ?? (isVendsys ? 'Vendsys Transition' : project.category === 'powerbi' ? 'Standalone Dashboard' : project.category === 'auto-report' ? 'Auto Generated Report' : 'Standalone Application'),
     deadline ? `Target: ${deadline}` : null,
   ].filter(Boolean).join(' \u00B7 ')
 

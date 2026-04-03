@@ -42,6 +42,7 @@ export type DomainId = 'operations' | 'customer-svc' | 'merchandising' | 'logist
 export interface Templates {
   lifecycles: {
     application: Lifecycle
+    'auto-report': Lifecycle
     powerbi: Lifecycle
     vendsys: VendsysLifecycle
   }
@@ -73,7 +74,7 @@ export interface Subtask {
 
 export type PhaseStatus = 'complete' | 'in-progress' | 'pending' | 'skipped'
 
-export type ProjectCategory = 'application' | 'powerbi' | 'vendsys'
+export type ProjectCategory = 'application' | 'auto-report' | 'powerbi' | 'vendsys'
 
 // Project
 export interface Project {

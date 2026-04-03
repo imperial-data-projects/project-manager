@@ -13,6 +13,7 @@ const active = projects.projects.filter((p) => p.status === 'active')
 const completed = projects.projects.filter((p) => p.status === 'complete')
 
 const applications = active.filter((p) => p.category === 'application')
+const autoReports = active.filter((p) => p.category === 'auto-report')
 const powerbi = active.filter((p) => p.category === 'powerbi')
 const vendsys = active.filter((p) => p.category === 'vendsys')
 
@@ -32,6 +33,15 @@ export default function App() {
           <CategorySection
             title="Applications"
             projects={applications}
+            templates={templates}
+            groups={projects.groups}
+          />
+        )}
+
+        {autoReports.length > 0 && (
+          <CategorySection
+            title="Auto Generated Reports"
+            projects={autoReports}
             templates={templates}
             groups={projects.groups}
           />

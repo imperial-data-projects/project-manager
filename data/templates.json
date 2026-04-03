@@ -136,6 +136,65 @@
         }
       ]
     },
+    "auto-report": {
+      "label": "Auto Generated Report",
+      "phases": [
+        {
+          "id": "report-review",
+          "label": "Report Review",
+          "stakeholderLabel": "Requirements Gathering",
+          "order": 1,
+          "description": "Review existing manual report with stakeholder. Understand data sources, layout, recipients, frequency.",
+          "effortRange": "1-2h",
+          "waitType": "scheduling"
+        },
+        {
+          "id": "report-build",
+          "label": "Report Build",
+          "stakeholderLabel": "Report Design",
+          "order": 2,
+          "description": "Recreate report using imperial-core Excel formatter. Match or improve on legacy layout.",
+          "effortRange": "2-6h",
+          "waitType": null
+        },
+        {
+          "id": "report-approval",
+          "label": "Report Approval",
+          "stakeholderLabel": "Design Review",
+          "order": 3,
+          "description": "Send sample report to stakeholder for sign-off on format and data accuracy.",
+          "effortRange": "1-2h",
+          "waitType": "approval"
+        },
+        {
+          "id": "notebook-build",
+          "label": "Notebook Build",
+          "stakeholderLabel": "Automation",
+          "order": 4,
+          "description": "Create Fabric notebook to query data, generate report, and email via Graph. Schedule monthly trigger.",
+          "effortRange": "2-6h",
+          "waitType": null
+        },
+        {
+          "id": "testing",
+          "label": "Testing",
+          "stakeholderLabel": "Verification",
+          "order": 5,
+          "description": "Stakeholder verifies a live test run. Confirm data, formatting, delivery, and schedule.",
+          "effortRange": "1-3h",
+          "waitType": "feedback"
+        },
+        {
+          "id": "production",
+          "label": "Production Release",
+          "stakeholderLabel": "Go Live",
+          "order": 6,
+          "description": "Enable production schedule. Confirm first automated delivery.",
+          "effortRange": "0.5-1h",
+          "waitType": null
+        }
+      ]
+    },
     "vendsys": {
       "label": "Vendsys Transition",
       "defaultTasks": [

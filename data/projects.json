@@ -3,7 +3,7 @@
     {
       "id": "lowes-eom-subsidy",
       "name": "Lowes EOM Subsidy For C1",
-      "category": "application",
+      "category": "auto-report",
       "domain": "accounting",
       "parent": null,
       "stakeholder": "",
@@ -13,13 +13,10 @@
       "completedDate": "2026-04-03",
       "currentPhase": "production",
       "phases": {
-        "interview": "complete",
-        "workflow": "complete",
-        "wireframe": "complete",
-        "mockups": "complete",
-        "backend": "complete",
-        "frontend": "complete",
-        "dev-release": "complete",
+        "report-review": "complete",
+        "report-build": "complete",
+        "report-approval": "complete",
+        "notebook-build": "complete",
         "testing": "complete",
         "production": "complete"
       },
@@ -645,7 +642,7 @@
     {
       "id": "springdale-beverage-tax",
       "name": "Springdale EOM Beverage Tax",
-      "category": "application",
+      "category": "auto-report",
       "domain": "accounting",
       "parent": null,
       "stakeholder": "",
@@ -655,13 +652,10 @@
       "completedDate": "2026-01-31",
       "currentPhase": "production",
       "phases": {
-        "interview": "complete",
-        "workflow": "complete",
-        "wireframe": "complete",
-        "mockups": "complete",
-        "backend": "complete",
-        "frontend": "complete",
-        "dev-release": "complete",
+        "report-review": "complete",
+        "report-build": "complete",
+        "report-approval": "complete",
+        "notebook-build": "complete",
         "testing": "complete",
         "production": "complete"
       },
