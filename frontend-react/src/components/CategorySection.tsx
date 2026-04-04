@@ -1,6 +1,7 @@
 import type { Project, Templates, ProjectGroup } from '@/types'
 import { sortByDeadline } from '@/lib/progress'
 import { ProjectCard } from './ProjectCard'
+import { VendsysCard } from './VendsysCard'
 
 interface CategorySectionProps {
   title: string
@@ -11,7 +12,8 @@ interface CategorySectionProps {
 
 export function CategorySection({ title, projects, templates, groups }: CategorySectionProps) {
   const sorted = sortByDeadline(projects)
-  const countLabel = title === 'Vendsys Transition'
+  const isVendsys = title === 'Vendsys Transition'
+  const countLabel = isVendsys
     ? `${sorted.length} branches`
     : `${sorted.length} projects`
 
@@ -22,9 +24,13 @@ export function CategorySection({ title, projects, templates, groups }: Category
         <span className="text-sm text-muted-foreground">{countLabel}</span>
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 min-[1800px]:grid-cols-4">
-        {sorted.map((project) => (
-          <ProjectCard key={project.id} project={project} templates={templates} groups={groups} />
-        ))}
+        {sorted.map((project) =>
+          isVendsys ? (
+            <VendsysCard key={project.id} project={project} templates={templates} groups={groups} />
+          ) : (
+            <ProjectCard key={project.id} project={project} templates={templates} groups={groups} />
+          )
+        )}
       </div>
     </section>
   )

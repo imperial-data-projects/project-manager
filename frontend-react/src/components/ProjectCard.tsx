@@ -1,11 +1,9 @@
 import type { Project, Templates, ProjectGroup } from '@/types'
-import { getPhaseProgress, getTaskProgress, getCurrentPhaseTasks, formatDeadline, formatUpdated, getGroupName, getPhaseLabel } from '@/lib/progress'
+import { getPhaseProgress, getCurrentPhaseTasks, formatDeadline, formatUpdated, getGroupName, getPhaseLabel } from '@/lib/progress'
 import { useUiStore } from '@/stores/ui-store'
 import { DomainBadge } from './DomainBadge'
 import { StatusChip } from './StatusChip'
 import { PhaseStepper, PhaseStepperDetail } from './PhaseStepper'
-import { ProgressBar } from './ProgressBar'
-import { TaskList } from './TaskList'
 
 const accentBorder: Record<string, string> = {
   ocean: 'bg-domain-ocean',
@@ -29,10 +27,15 @@ export function ProjectCard({ project, templates, groups }: ProjectCardProps) {
   const accent = accentBorder[domain.color] ?? 'bg-muted-foreground'
   const groupName = getGroupName(project, groups)
   const deadline = formatDeadline(project.deadline)
-  const isVendsys = project.category === 'vendsys'
+
+  const categoryLabel = project.category === 'powerbi'
+    ? 'Standalone Dashboard'
+    : project.category === 'auto-report'
+      ? 'Auto Generated Report'
+      : 'Standalone Application'
 
   const subtitle = [
-    groupName ?? (isVendsys ? 'Vendsys Transition' : project.category === 'powerbi' ? 'Standalone Dashboard' : project.category === 'auto-report' ? 'Auto Generated Report' : 'Standalone Application'),
+    groupName ?? categoryLabel,
     deadline ? `Target: ${deadline}` : null,
   ].filter(Boolean).join(' \u00B7 ')
 
@@ -43,28 +46,19 @@ export function ProjectCard({ project, templates, groups }: ProjectCardProps) {
     >
       <div className={`h-[3px] w-full ${accent}`} />
       <div className="px-5 py-4">
-        {/* Top row: name + domain badge */}
         <div className="mb-1 flex items-start justify-between gap-3">
           <span className="text-base font-semibold">{project.name}</span>
           <DomainBadge domainId={project.domain} templates={templates} />
         </div>
-
-        {/* Subtitle */}
         <div className="mb-3.5 text-[13px] text-muted-foreground">{subtitle}</div>
 
-        {/* Progress visual */}
-        {isVendsys ? (
-          <VendsysProgress project={project} templates={templates} />
-        ) : (
-          <LifecycleProgress project={project} templates={templates} />
-        )}
+        <LifecycleProgress project={project} templates={templates} />
 
-        {/* Footer */}
         <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
           <span>
             {project.statusChip ? (
               <StatusChip chip={project.statusChip} />
-            ) : isVendsys ? null : (
+            ) : (
               <CardTaskSummary project={project} />
             )}
           </span>
@@ -72,16 +66,9 @@ export function ProjectCard({ project, templates, groups }: ProjectCardProps) {
         </div>
       </div>
 
-      {/* Expanded detail */}
       {expanded && (
         <div className="border-t border-border px-5 py-4">
-          {!isVendsys && (
-            <PhaseStepperDetail project={project} templates={templates} />
-          )}
-          <TaskList
-            tasks={isVendsys ? project.tasks : getCurrentPhaseTasks(project)}
-            title={isVendsys ? 'Tasks' : 'Current Phase Tasks'}
-          />
+          <PhaseStepperDetail project={project} templates={templates} />
         </div>
       )}
     </div>
@@ -106,18 +93,6 @@ function LifecycleProgress({ project, templates }: { project: Project; templates
         </span>
       </div>
     </>
-  )
-}
-
-function VendsysProgress({ project, templates }: { project: Project; templates: Templates }) {
-  const { completed, total } = getTaskProgress(project.tasks)
-  return (
-    <ProgressBar
-      completed={completed}
-      total={total}
-      domainId={project.domain}
-      templates={templates}
-    />
   )
 }
 

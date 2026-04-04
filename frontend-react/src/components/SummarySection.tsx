@@ -8,17 +8,24 @@ interface SummarySectionProps {
 
 export function SummarySection({ projects }: SummarySectionProps) {
   const active = projects.filter((p) => p.status === 'active')
-  const inProgress = active.filter((p) => !p.statusChip && p.currentPhase !== null)
   const completed = projects.filter((p) => p.status === 'complete')
 
-  // Attention items: projects with a statusChip (awaiting, blocked, not-started excluded)
+  // In progress: non-vendsys with a currentPhase and no statusChip,
+  // OR vendsys with at least one in-progress workstream
+  const inProgress = active.filter((p) => {
+    if (p.category === 'vendsys') {
+      if (!p.workstreams) return false
+      return Object.values(p.workstreams).some(ws => ws.status === 'in-progress')
+    }
+    return !p.statusChip && p.currentPhase !== null
+  })
+
   const attentionItems = active.filter(
     (p) => p.statusChip && p.statusChip.type !== 'not-started'
   )
 
   return (
     <div className="mb-10">
-      {/* Stat cards */}
       <div className="mb-4 grid grid-cols-4 gap-4 max-md:grid-cols-2">
         <StatCard value={active.length} label="Active Projects" variant="active" />
         <StatCard value={inProgress.length} label="In Progress" variant="progress" />
@@ -26,7 +33,6 @@ export function SummarySection({ projects }: SummarySectionProps) {
         <StatCard value={completed.length} label="Completed, In Maintenance" variant="done" />
       </div>
 
-      {/* Attention row */}
       {attentionItems.length > 0 && (
         <div className="rounded-xl border border-border bg-card px-6 py-4">
           <div className="flex flex-col gap-2.5">

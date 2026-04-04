@@ -197,18 +197,61 @@
     },
     "vendsys": {
       "label": "Vendsys Transition",
-      "defaultTasks": [
-        { "name": "Product Validation", "effortRange": "2-6h", "description": "Verify product catalog parity between legacy VMS and target system." },
-        { "name": "Address Validation", "effortRange": "1-3h", "description": "Validate all branch addresses through Google Places API." },
-        { "name": "Single-Address Location Consolidation", "effortRange": "2-4h", "description": "Consolidate multi-entry locations to a single validated address per site." },
-        { "name": "Campus Target Identification", "effortRange": "2-4h", "description": "Identify and implement campus-level targeting for multi-building locations." },
-        { "name": "Account Billing Verification", "effortRange": "2-4h", "description": "Validate account billing information against source system records." },
-        { "name": "Commission Data Pull", "effortRange": "1-3h", "description": "Extract and validate commission structures for branch accounts." },
-        { "name": "Subsidy Data Pull", "effortRange": "1-3h", "description": "Extract and validate subsidy arrangements for branch accounts." },
-        { "name": "Workbook Planning", "effortRange": "2-4h", "description": "Define workbook structure and transition plan for branch data migration." },
-        { "name": "Initial Workbook Generation", "effortRange": "3-6h", "description": "Create migration workbook with initial Orange sheet population." },
-        { "name": "Account and Asset Lock", "effortRange": "2-4h", "description": "Freeze account and asset data for final migration snapshot." },
-        { "name": "Planogram Lock", "effortRange": "1-3h", "description": "Freeze planogram configurations for final migration snapshot." }
+      "workstreams": [
+        {
+          "id": "products",
+          "label": "Products",
+          "tasks": [
+            { "id": "barcode-match", "label": "Barcode Match & Parity Report", "owner": "me" },
+            { "id": "parity-decisions", "label": "Parity Decisions", "owner": "them" },
+            { "id": "code-conversion", "label": "Code Conversion", "owner": "me" }
+          ]
+        },
+        {
+          "id": "accounts",
+          "label": "Accounts",
+          "tasks": [
+            { "id": "address-validation", "label": "Address & Name Verification", "owner": "me" },
+            { "id": "account-fixes", "label": "Account Fixes", "owner": "them" },
+            { "id": "consolidation-review", "label": "Consolidation Review", "owner": "me" },
+            { "id": "account-verified", "label": "Account Fixes Verified", "owner": "me" }
+          ]
+        },
+        {
+          "id": "assets",
+          "label": "Assets",
+          "tasks": [
+            { "id": "app-deployed", "label": "Asset Validation App Deployed", "owner": "me" },
+            { "id": "field-validation", "label": "Field Validation", "owner": "them" },
+            { "id": "asset-list-verified", "label": "Asset List Verified", "owner": "me" }
+          ]
+        },
+        {
+          "id": "financial",
+          "label": "Financial",
+          "tasks": [
+            { "id": "commission-audit", "label": "Commission Structure Audit", "owner": "me" },
+            { "id": "commission-fixes", "label": "Commission Fixes", "owner": "them" },
+            { "id": "subsidy-audit", "label": "Subsidy Structure Audit", "owner": "me" },
+            { "id": "subsidy-fixes", "label": "Subsidy Fixes", "owner": "them" },
+            { "id": "billing-verification", "label": "Billing & Rental Verification", "owner": "me" },
+            { "id": "billing-fixes", "label": "Billing Fixes", "owner": "them" }
+          ]
+        },
+        {
+          "id": "onhand-monitoring",
+          "label": "Onhand Monitoring",
+          "recurring": true,
+          "startsAfter": "products.parity-decisions",
+          "tasks": []
+        }
+      ],
+      "lockdown": [
+        { "id": "initial-workbook", "label": "Initial Workbook", "offset": -30 },
+        { "id": "account-lock", "label": "Account Lock", "offset": -21, "validation": "Accounts & assets imported, validate against source" },
+        { "id": "onhand-final", "label": "Final Onhand Audit", "offset": -15 },
+        { "id": "planogram-lock", "label": "Planogram Lock", "offset": -10, "validation": "Planograms imported, validate against source" },
+        { "id": "go-live", "label": "Go-Live", "offset": 0 }
       ]
     }
   },

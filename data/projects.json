@@ -286,87 +286,6 @@
       "notes": ""
     },
     {
-      "id": "vendsys-rogersville-joplin",
-      "name": "Rogersville / Joplin",
-      "category": "vendsys",
-      "domain": "operations",
-      "parent": "vendsys-transition",
-      "stakeholder": "",
-      "priority": "high",
-      "deadline": "2026-05-31",
-      "status": "active",
-      "tasks": [
-        {
-          "id": "rj-products",
-          "name": "Product Validation",
-          "status": "complete",
-          "effortRange": "2-6h"
-        },
-        {
-          "id": "rj-addresses",
-          "name": "Address Validation",
-          "status": "complete",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "rj-single-addr",
-          "name": "Single-Address Location Consolidation",
-          "status": "complete",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "rj-campus",
-          "name": "Campus Target Identification",
-          "status": "complete",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "rj-billing",
-          "name": "Account Billing Verification",
-          "status": "complete",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "rj-commissions",
-          "name": "Commission Data Pull",
-          "status": "complete",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "rj-subsidies",
-          "name": "Subsidy Data Pull",
-          "status": "complete",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "rj-wb-plan",
-          "name": "Workbook Planning",
-          "status": "complete",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "rj-wb-gen",
-          "name": "Initial Workbook Generation",
-          "status": "complete",
-          "effortRange": "3-6h"
-        },
-        {
-          "id": "rj-acct-lock",
-          "name": "Account and Asset Lock",
-          "status": "complete",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "rj-plano-lock",
-          "name": "Planogram Lock",
-          "status": "complete",
-          "effortRange": "1-3h"
-        }
-      ],
-      "updated": "2026-04-03",
-      "notes": ""
-    },
-    {
       "id": "vendsys-el-paso",
       "name": "El Paso",
       "category": "vendsys",
@@ -374,76 +293,58 @@
       "parent": "vendsys-transition",
       "stakeholder": "",
       "priority": "high",
-      "deadline": "2026-07-31",
+      "transitionDate": "2026-07-31",
       "status": "active",
-      "tasks": [
-        {
-          "id": "ep-products",
-          "name": "Product Validation",
-          "status": "complete",
-          "effortRange": "2-6h"
+      "workstreams": {
+        "products": {
+          "status": "clean",
+          "tasks": {
+            "barcode-match": "clean",
+            "parity-decisions": "clean",
+            "code-conversion": "clean"
+          }
         },
-        {
-          "id": "ep-addresses",
-          "name": "Address Validation",
+        "accounts": {
           "status": "pending",
-          "effortRange": "1-3h"
+          "tasks": {
+            "address-validation": "pending",
+            "account-fixes": "pending",
+            "consolidation-review": "pending",
+            "account-verified": "pending"
+          }
         },
-        {
-          "id": "ep-single-addr",
-          "name": "Single-Address Location Consolidation",
+        "assets": {
           "status": "pending",
-          "effortRange": "2-4h"
+          "tasks": {
+            "app-deployed": "pending",
+            "field-validation": "pending",
+            "asset-list-verified": "pending"
+          }
         },
-        {
-          "id": "ep-campus",
-          "name": "Campus Target Identification",
+        "financial": {
           "status": "pending",
-          "effortRange": "2-4h"
+          "tasks": {
+            "commission-audit": "pending",
+            "commission-fixes": "pending",
+            "subsidy-audit": "pending",
+            "subsidy-fixes": "pending",
+            "billing-verification": "pending",
+            "billing-fixes": "pending"
+          }
         },
-        {
-          "id": "ep-billing",
-          "name": "Account Billing Verification",
-          "status": "pending",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "ep-commissions",
-          "name": "Commission Data Pull",
-          "status": "pending",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "ep-subsidies",
-          "name": "Subsidy Data Pull",
-          "status": "pending",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "ep-wb-plan",
-          "name": "Workbook Planning",
-          "status": "pending",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "ep-wb-gen",
-          "name": "Initial Workbook Generation",
-          "status": "pending",
-          "effortRange": "3-6h"
-        },
-        {
-          "id": "ep-acct-lock",
-          "name": "Account and Asset Lock",
-          "status": "pending",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "ep-plano-lock",
-          "name": "Planogram Lock",
-          "status": "pending",
-          "effortRange": "1-3h"
+        "onhand-monitoring": {
+          "lastAudit": null,
+          "status": "not-started"
         }
-      ],
+      },
+      "lockdown": {
+        "initial-workbook": "pending",
+        "account-lock": "pending",
+        "onhand-final": "pending",
+        "planogram-lock": "pending",
+        "go-live": "pending"
+      },
+      "tasks": [],
       "updated": "2026-04-02",
       "notes": ""
     },
@@ -455,77 +356,74 @@
       "parent": "vendsys-transition",
       "stakeholder": "",
       "priority": "high",
-      "deadline": "2026-08-31",
+      "transitionDate": "2026-08-31",
       "status": "active",
-      "tasks": [
-        {
-          "id": "smg-products",
-          "name": "Product Validation",
+      "workstreams": {
+        "products": {
           "status": "pending",
-          "effortRange": "2-6h"
+          "tasks": {
+            "barcode-match": "pending",
+            "parity-decisions": "pending",
+            "code-conversion": "pending"
+          }
         },
-        {
-          "id": "smg-addresses",
-          "name": "Address Validation",
+        "accounts": {
           "status": "pending",
-          "effortRange": "1-3h"
+          "tasks": {
+            "address-validation": "pending",
+            "account-fixes": "pending",
+            "consolidation-review": "pending",
+            "account-verified": "pending"
+          }
         },
-        {
-          "id": "smg-single-addr",
-          "name": "Single-Address Location Consolidation",
+        "assets": {
           "status": "pending",
-          "effortRange": "2-4h"
+          "tasks": {
+            "app-deployed": "pending",
+            "field-validation": "pending",
+            "asset-list-verified": "pending"
+          }
         },
-        {
-          "id": "smg-campus",
-          "name": "Campus Target Identification",
+        "financial": {
           "status": "pending",
-          "effortRange": "2-4h"
+          "tasks": {
+            "commission-audit": "pending",
+            "commission-fixes": "pending",
+            "subsidy-audit": "pending",
+            "subsidy-fixes": "pending",
+            "billing-verification": "pending",
+            "billing-fixes": "pending"
+          }
         },
-        {
-          "id": "smg-billing",
-          "name": "Account Billing Verification",
-          "status": "pending",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "smg-commissions",
-          "name": "Commission Data Pull",
-          "status": "pending",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "smg-subsidies",
-          "name": "Subsidy Data Pull",
-          "status": "pending",
-          "effortRange": "1-3h"
-        },
-        {
-          "id": "smg-wb-plan",
-          "name": "Workbook Planning",
-          "status": "pending",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "smg-wb-gen",
-          "name": "Initial Workbook Generation",
-          "status": "pending",
-          "effortRange": "3-6h"
-        },
-        {
-          "id": "smg-acct-lock",
-          "name": "Account and Asset Lock",
-          "status": "pending",
-          "effortRange": "2-4h"
-        },
-        {
-          "id": "smg-plano-lock",
-          "name": "Planogram Lock",
-          "status": "pending",
-          "effortRange": "1-3h"
+        "onhand-monitoring": {
+          "lastAudit": null,
+          "status": "not-started"
         }
-      ],
+      },
+      "lockdown": {
+        "initial-workbook": "pending",
+        "account-lock": "pending",
+        "onhand-final": "pending",
+        "planogram-lock": "pending",
+        "go-live": "pending"
+      },
+      "tasks": [],
       "updated": "2026-04-01",
+      "notes": ""
+    },
+    {
+      "id": "vendsys-rogersville-joplin",
+      "name": "Rogersville / Joplin",
+      "category": "vendsys",
+      "domain": "operations",
+      "parent": "vendsys-transition",
+      "stakeholder": "",
+      "priority": "high",
+      "deadline": null,
+      "status": "complete",
+      "completedDate": "2026-04-03",
+      "tasks": [],
+      "updated": "2026-04-03",
       "notes": ""
     },
     {
