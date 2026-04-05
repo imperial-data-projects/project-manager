@@ -305,9 +305,9 @@
           }
         },
         "accounts": {
-          "status": "pending",
+          "status": "in-progress",
           "tasks": {
-            "address-validation": "pending",
+            "address-validation": "in-review",
             "account-fixes": "pending",
             "consolidation-review": "pending",
             "account-verified": "pending"
@@ -345,7 +345,7 @@
         "go-live": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-02",
+      "updated": "2026-04-04",
       "notes": ""
     },
     {
