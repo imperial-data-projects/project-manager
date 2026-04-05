@@ -297,24 +297,20 @@
       "status": "active",
       "workstreams": {
         "products": {
-          "status": "clean",
           "tasks": {
-            "barcode-match": "clean",
-            "parity-decisions": "clean",
-            "code-conversion": "clean"
+            "barcode-match": "complete",
+            "parity-decisions": "complete",
+            "code-conversion": "complete"
           }
         },
         "accounts": {
-          "status": "in-progress",
           "tasks": {
-            "address-validation": "in-review",
+            "address-validation": "submitted",
             "account-fixes": "pending",
-            "consolidation-review": "pending",
-            "account-verified": "pending"
+            "consolidation-review": "pending"
           }
         },
         "assets": {
-          "status": "pending",
           "tasks": {
             "app-deployed": "pending",
             "field-validation": "pending",
@@ -322,7 +318,6 @@
           }
         },
         "financial": {
-          "status": "pending",
           "tasks": {
             "commission-audit": "pending",
             "commission-fixes": "pending",
@@ -333,8 +328,7 @@
           }
         },
         "onhand-monitoring": {
-          "lastAudit": null,
-          "status": "not-started"
+          "lastAudit": null
         }
       },
       "lockdown": {
@@ -360,7 +354,6 @@
       "status": "active",
       "workstreams": {
         "products": {
-          "status": "pending",
           "tasks": {
             "barcode-match": "pending",
             "parity-decisions": "pending",
@@ -368,16 +361,13 @@
           }
         },
         "accounts": {
-          "status": "pending",
           "tasks": {
             "address-validation": "pending",
             "account-fixes": "pending",
-            "consolidation-review": "pending",
-            "account-verified": "pending"
+            "consolidation-review": "pending"
           }
         },
         "assets": {
-          "status": "pending",
           "tasks": {
             "app-deployed": "pending",
             "field-validation": "pending",
@@ -385,7 +375,6 @@
           }
         },
         "financial": {
-          "status": "pending",
           "tasks": {
             "commission-audit": "pending",
             "commission-fixes": "pending",
@@ -396,8 +385,7 @@
           }
         },
         "onhand-monitoring": {
-          "lastAudit": null,
-          "status": "not-started"
+          "lastAudit": null
         }
       },
       "lockdown": {

@@ -1,8 +1,8 @@
 import type { Project, Templates, ProjectGroup, HandoffStatus, LockdownStatus } from '@/types'
 import {
-  getVendsysWorkstreamProgress, getLockdownDates, formatShortDate,
-  getMyCourtCount, getTheirCourtCount, isReadyForLockdown, formatDeadline,
-  formatUpdated, getGroupName,
+  getLockdownDates, formatShortDate, getTheirCourtCount,
+  isReadyForLockdown, hasVendsysProgress, deriveWorkstreamStatus,
+  formatDeadline, formatUpdated, getGroupName,
 } from '@/lib/progress'
 import { useUiStore } from '@/stores/ui-store'
 import { DomainBadge } from './DomainBadge'
@@ -33,10 +33,9 @@ export function VendsysCard({ project, templates, groups }: VendsysCardProps) {
   const lockdownTemplates = templates.lifecycles.vendsys.lockdown
   const lockdownDates = transitionDate ? getLockdownDates(transitionDate, templates) : null
 
-  const { clean } = getVendsysWorkstreamProgress(project, templates)
-  const myCourt = getMyCourtCount(project, templates)
   const theirCourt = getTheirCourtCount(project, templates)
   const readyForLockdown = isReadyForLockdown(project, templates)
+  const anyProgress = hasVendsysProgress(project)
 
   const subtitle = [
     groupName ?? 'Vendsys Transition',
@@ -61,13 +60,16 @@ export function VendsysCard({ project, templates, groups }: VendsysCardProps) {
         <div className="flex flex-col gap-1.5">
           {wsTemplates.map((ws) => {
             const data = project.workstreams?.[ws.id]
+            const status = ws.recurring
+              ? (data?.lastAudit ? 'in-progress' : 'pending')
+              : deriveWorkstreamStatus(data?.tasks)
             return (
               <WorkstreamBar
                 key={ws.id}
                 label={ws.label}
-                status={data?.status ?? 'pending'}
+                status={status}
                 taskCount={ws.tasks.length}
-                cleanCount={data?.tasks ? Object.values(data.tasks).filter(s => s === 'clean').length : 0}
+                completeCount={data?.tasks ? Object.values(data.tasks).filter(s => s === 'complete').length : 0}
                 isRecurring={ws.recurring}
                 lastAudit={data?.lastAudit}
               />
@@ -78,12 +80,6 @@ export function VendsysCard({ project, templates, groups }: VendsysCardProps) {
         {/* Court summary + lockdown readiness */}
         <div className="mt-3 flex items-center justify-between text-xs">
           <div className="flex items-center gap-3">
-            {myCourt > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-info-bg px-2.5 py-0.5 text-[11px] font-semibold text-info-text">
-                <span className="size-1.5 rounded-full bg-info-base" />
-                {myCourt} on my plate
-              </span>
-            )}
             {theirCourt > 0 && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-warning-bg px-2.5 py-0.5 text-[11px] font-semibold text-warning-text">
                 <span className="size-1.5 rounded-full bg-warning-base" />
@@ -96,7 +92,7 @@ export function VendsysCard({ project, templates, groups }: VendsysCardProps) {
                 Ready for lockdown
               </span>
             )}
-            {myCourt === 0 && theirCourt === 0 && !readyForLockdown && clean === 0 && (
+            {!anyProgress && !readyForLockdown && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-semibold text-muted-foreground">
                 Not started
               </span>
@@ -133,7 +129,7 @@ export function VendsysCard({ project, templates, groups }: VendsysCardProps) {
                   label={ws.label}
                   tasks={ws.tasks}
                   taskData={data?.tasks ?? {}}
-                  status={data?.status ?? 'pending'}
+                  status={deriveWorkstreamStatus(data?.tasks)}
                 />
               )
             })}
@@ -160,18 +156,18 @@ export function VendsysCard({ project, templates, groups }: VendsysCardProps) {
 }
 
 function WorkstreamBar({
-  label, status, taskCount, cleanCount, isRecurring, lastAudit,
+  label, status, taskCount, completeCount, isRecurring, lastAudit,
 }: {
   label: string
   status: string
   taskCount: number
-  cleanCount: number
+  completeCount: number
   isRecurring?: boolean
   lastAudit?: string | null
 }) {
   const pct = isRecurring
-    ? (status === 'clean' ? 100 : status === 'not-started' ? 0 : 50)
-    : (taskCount > 0 ? Math.round((cleanCount / taskCount) * 100) : 0)
+    ? (status === 'in-progress' ? 50 : 0)
+    : (taskCount > 0 ? Math.round((completeCount / taskCount) * 100) : 0)
 
   let barClass = 'bg-muted-foreground'
   if (status === 'clean') barClass = 'bg-success-base'
@@ -187,7 +183,7 @@ function WorkstreamBar({
         />
       </div>
       <span className="w-7 text-right text-[11px] text-muted-foreground shrink-0">
-        {isRecurring ? (lastAudit ? formatShortDate(lastAudit) : '\u2014') : `${cleanCount}/${taskCount}`}
+        {isRecurring ? (lastAudit ? formatShortDate(lastAudit) : '\u2014') : `${completeCount}/${taskCount}`}
       </span>
     </div>
   )
@@ -231,7 +227,7 @@ function OnhandMonitoringDetail({
   label, data,
 }: {
   label: string
-  data?: { status: string; lastAudit?: string | null }
+  data?: { lastAudit?: string | null }
 }) {
   const lastAudit = data?.lastAudit
   return (
@@ -251,15 +247,12 @@ function OnhandMonitoringDetail({
 
 function HandoffIcon({ status }: { status: HandoffStatus }) {
   const base = 'flex size-4.5 items-center justify-center rounded-full text-[10px] flex-shrink-0'
-  if (status === 'clean') return <div className={`${base} bg-success-bg text-success-base`}>&#10003;</div>
-  if (status === 'verifying') return <div className={`${base} bg-info-bg text-info-base`}>&#9679;</div>
+  if (status === 'complete') return <div className={`${base} bg-success-bg text-success-base`}>&#10003;</div>
   if (status === 'submitted') return <div className={`${base} bg-warning-bg text-warning-base`}>&#9679;</div>
-  if (status === 'preparing') return <div className={`${base} bg-info-bg text-info-base`}>&#9679;</div>
   return <div className={`${base} bg-muted text-muted-foreground`}>&#8226;</div>
 }
 
 function HandoffBadge({ status }: { status: HandoffStatus; owner: 'me' | 'them' }) {
-  if (status === 'pending' || status === 'clean') return null
   if (status === 'submitted') {
     return (
       <span className="ml-auto text-[11px] text-warning-base font-medium whitespace-nowrap">
@@ -267,11 +260,7 @@ function HandoffBadge({ status }: { status: HandoffStatus; owner: 'me' | 'them' 
       </span>
     )
   }
-  return (
-    <span className="ml-auto text-[11px] text-info-base font-medium whitespace-nowrap">
-      {status === 'preparing' ? 'Preparing' : 'Verifying'}
-    </span>
-  )
+  return null
 }
 
 function LockdownMilestone({

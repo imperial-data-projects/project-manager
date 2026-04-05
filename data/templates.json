@@ -213,8 +213,7 @@
           "tasks": [
             { "id": "address-validation", "label": "Address & Name Verification", "owner": "me" },
             { "id": "account-fixes", "label": "Account Fixes", "owner": "them" },
-            { "id": "consolidation-review", "label": "Consolidation Review", "owner": "me" },
-            { "id": "account-verified", "label": "Account Fixes Verified", "owner": "me" }
+            { "id": "consolidation-review", "label": "Consolidation Review", "owner": "me" }
           ]
         },
         {

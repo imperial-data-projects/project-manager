@@ -15,7 +15,9 @@ export function SummarySection({ projects }: SummarySectionProps) {
   const inProgress = active.filter((p) => {
     if (p.category === 'vendsys') {
       if (!p.workstreams) return false
-      return Object.values(p.workstreams).some(ws => ws.status === 'in-progress')
+      return Object.values(p.workstreams).some(ws =>
+        ws.tasks && Object.values(ws.tasks).some(s => s !== 'pending')
+      )
     }
     return !p.statusChip && p.currentPhase !== null
   })

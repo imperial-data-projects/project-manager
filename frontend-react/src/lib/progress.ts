@@ -1,4 +1,4 @@
-import type { Project, Task, Templates, PhaseTemplate, Lifecycle } from '@/types'
+import type { Project, Task, Templates, PhaseTemplate, Lifecycle, HandoffStatus } from '@/types'
 
 function getLifecycle(project: Project, templates: Templates): Lifecycle {
   if (project.category === 'auto-report') return templates.lifecycles['auto-report']
@@ -91,14 +91,25 @@ export function sortByDeadline(projects: Project[]): Project[] {
 
 // --- Vendsys helpers ---
 
+/** Derive workstream status from its tasks */
+export function deriveWorkstreamStatus(tasks: Record<string, HandoffStatus> | undefined): 'clean' | 'in-progress' | 'pending' {
+  if (!tasks) return 'pending'
+  const values = Object.values(tasks)
+  if (values.length === 0) return 'pending'
+  if (values.every(s => s === 'complete')) return 'clean'
+  if (values.some(s => s === 'complete' || s === 'submitted')) return 'in-progress'
+  return 'pending'
+}
+
 /** Get workstream progress summary for a vendsys branch */
 export function getVendsysWorkstreamProgress(project: Project, templates: Templates) {
   if (!project.workstreams) return { clean: 0, total: 0 }
   const wsTemplates = templates.lifecycles.vendsys.workstreams
-  const total = wsTemplates.length
+  const total = wsTemplates.filter(ws => !ws.recurring).length
   const clean = wsTemplates.filter(ws => {
+    if (ws.recurring) return false
     const data = project.workstreams![ws.id]
-    return data?.status === 'clean'
+    return deriveWorkstreamStatus(data?.tasks) === 'clean'
   }).length
   return { clean, total }
 }
@@ -146,26 +157,20 @@ export function getTheirCourtCount(project: Project, templates: Templates): numb
   return count
 }
 
-/** Count how many workstream tasks are in "my court" */
-export function getMyCourtCount(project: Project, templates: Templates): number {
-  if (!project.workstreams) return 0
-  let count = 0
-  for (const ws of templates.lifecycles.vendsys.workstreams) {
-    const data = project.workstreams[ws.id]
-    if (!data?.tasks) continue
-    for (const task of ws.tasks) {
-      const s = data.tasks[task.id]
-      if (s === 'preparing' || s === 'verifying') count++
-    }
-  }
-  return count
+/** Check if any work has started across vendsys workstreams */
+export function hasVendsysProgress(project: Project): boolean {
+  if (!project.workstreams) return false
+  return Object.values(project.workstreams).some(ws =>
+    ws.tasks && Object.values(ws.tasks).some(s => s !== 'pending')
+  )
 }
 
 /** Check if all workstreams are clean (ready for lockdown) */
 export function isReadyForLockdown(project: Project, templates: Templates): boolean {
   if (!project.workstreams) return false
   return templates.lifecycles.vendsys.workstreams.every(ws => {
+    if (ws.recurring) return true
     const data = project.workstreams![ws.id]
-    return data?.status === 'clean'
+    return deriveWorkstreamStatus(data?.tasks) === 'clean'
   })
 }

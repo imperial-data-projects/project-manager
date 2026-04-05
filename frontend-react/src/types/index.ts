@@ -92,14 +92,13 @@ export interface Subtask {
 
 export type PhaseStatus = 'complete' | 'in-progress' | 'pending' | 'skipped'
 
-// Vendsys handoff states
-export type HandoffStatus = 'pending' | 'preparing' | 'submitted' | 'verifying' | 'clean'
+// Vendsys task states
+export type HandoffStatus = 'pending' | 'submitted' | 'complete'
 
 export type LockdownStatus = 'pending' | 'in-progress' | 'complete'
 
 // Vendsys workstream instance (per branch)
 export interface VendsysWorkstreamData {
-  status: 'pending' | 'in-progress' | 'clean' | 'not-started'
   tasks?: Record<string, HandoffStatus>
   lastAudit?: string | null
 }
