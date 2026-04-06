@@ -191,20 +191,16 @@
       "priority": "medium",
       "deadline": "2026-05-15",
       "status": "active",
-      "currentPhase": null,
-      "statusChip": {
-        "type": "not-started",
-        "label": "Not Started"
-      },
+      "currentPhase": "interview",
       "phases": {
-        "interview": "pending",
+        "interview": "in-progress",
         "kpi-planning": "pending",
         "mockup-review": "pending",
         "build": "pending",
         "release": "pending"
       },
       "tasks": [],
-      "updated": "",
+      "updated": "2026-04-06",
       "notes": ""
     },
     {
