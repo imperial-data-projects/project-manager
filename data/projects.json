@@ -421,14 +421,10 @@
       "priority": "high",
       "deadline": "2026-04-07",
       "status": "active",
-      "currentPhase": null,
-      "statusChip": {
-        "type": "not-started",
-        "label": "Not Started"
-      },
+      "currentPhase": "workflow",
       "phases": {
-        "interview": "pending",
-        "workflow": "pending",
+        "interview": "complete",
+        "workflow": "in-progress",
         "wireframe": "pending",
         "mockups": "pending",
         "backend": "pending",
@@ -438,7 +434,7 @@
         "production": "pending"
       },
       "tasks": [],
-      "updated": "",
+      "updated": "2026-04-07",
       "notes": ""
     },
     {
