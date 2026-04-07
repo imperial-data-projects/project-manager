@@ -6,7 +6,7 @@
         {
           "id": "interview",
           "label": "Stakeholder Interview",
-          "stakeholderLabel": "Requirements Gathering",
+          "stakeholderLabel": "Interview",
           "order": 1,
           "description": "Sit down with primary stakeholder, fill out template interview. Define goals, users, workflows, pain points.",
           "effortRange": "1-3h",
@@ -15,7 +15,7 @@
         {
           "id": "workflow",
           "label": "Workflow Assignment",
-          "stakeholderLabel": "Workflow Design",
+          "stakeholderLabel": "Workflow Planning",
           "order": 2,
           "description": "From interview output, define app screens, user workflows, data model. Internal planning step.",
           "effortRange": "2-4h",
@@ -24,7 +24,7 @@
         {
           "id": "wireframe",
           "label": "Wireframe",
-          "stakeholderLabel": "Layout Design",
+          "stakeholderLabel": "Wireframes",
           "order": 3,
           "description": "Create wireframe layouts for each screen. Low-fidelity, focused on structure and flow.",
           "effortRange": "2-6h",
@@ -33,7 +33,7 @@
         {
           "id": "mockups",
           "label": "Mockups Sent",
-          "stakeholderLabel": "Design Review",
+          "stakeholderLabel": "Mockup Approval",
           "order": 4,
           "description": "High-fidelity mockups sent to stakeholder for approval. Gate: requires stakeholder sign-off.",
           "effortRange": "1-2h",
@@ -42,7 +42,7 @@
         {
           "id": "backend",
           "label": "Backend Build",
-          "stakeholderLabel": "Core Development",
+          "stakeholderLabel": "Data & Logic",
           "order": 5,
           "description": "API endpoints, database schema, business logic, integrations. Heaviest development phase.",
           "effortRange": "8-40h",
@@ -51,7 +51,7 @@
         {
           "id": "frontend",
           "label": "Frontend Build",
-          "stakeholderLabel": "Interface Development",
+          "stakeholderLabel": "Interface Build",
           "order": 6,
           "description": "React UI implementation. Components, forms, data display, interactions.",
           "effortRange": "8-40h",
@@ -92,35 +92,44 @@
         {
           "id": "interview",
           "label": "Stakeholder Interview",
-          "stakeholderLabel": "Requirements Gathering",
+          "stakeholderLabel": "Interview",
           "order": 1,
           "description": "Template interview with primary stakeholder. Define KPIs, data sources, audience.",
           "effortRange": "1-2h",
           "waitType": "scheduling"
         },
         {
-          "id": "kpi-planning",
-          "label": "Page & KPI Planning",
-          "stakeholderLabel": "Dashboard Planning",
+          "id": "kpi-proposal",
+          "label": "KPI Proposal",
+          "stakeholderLabel": "KPI Proposal",
           "order": 2,
-          "description": "Define number of pages, KPIs per page, data relationships. Submit to stakeholder for approval.",
+          "description": "Build design spec defining pages, KPIs, and data relationships. Submit to stakeholder for approval.",
           "effortRange": "2-4h",
           "waitType": "approval"
         },
         {
-          "id": "mockup-review",
-          "label": "Mockup Review",
-          "stakeholderLabel": "Layout Review",
+          "id": "mockups",
+          "label": "Mockups",
+          "stakeholderLabel": "Mockups",
           "order": 3,
-          "description": "Create and submit page layout mockups. Gate: requires stakeholder sign-off.",
+          "description": "Build page layout mockups for each report page.",
           "effortRange": "2-4h",
+          "waitType": null
+        },
+        {
+          "id": "mockup-approval",
+          "label": "Mockup Approval",
+          "stakeholderLabel": "Mockup Approval",
+          "order": 4,
+          "description": "Submit mockups to stakeholder for sign-off. Gate: requires approval before build.",
+          "effortRange": "1-2h",
           "waitType": "approval"
         },
         {
           "id": "build",
           "label": "Build",
-          "stakeholderLabel": "Development",
-          "order": 4,
+          "stakeholderLabel": "Build",
+          "order": 5,
           "description": "Build report pages in Power BI against approved layouts and KPI register.",
           "effortRange": "4-16h",
           "waitType": null
@@ -129,7 +138,7 @@
           "id": "release",
           "label": "Release",
           "stakeholderLabel": "Go Live",
-          "order": 5,
+          "order": 6,
           "description": "Publish to Power BI workspace, configure refresh schedule, share with stakeholders.",
           "effortRange": "1-2h",
           "waitType": null
@@ -142,7 +151,7 @@
         {
           "id": "report-review",
           "label": "Report Review",
-          "stakeholderLabel": "Requirements Gathering",
+          "stakeholderLabel": "Report Review",
           "order": 1,
           "description": "Review existing manual report with stakeholder. Understand data sources, layout, recipients, frequency.",
           "effortRange": "1-2h",
@@ -160,7 +169,7 @@
         {
           "id": "report-approval",
           "label": "Report Approval",
-          "stakeholderLabel": "Design Review",
+          "stakeholderLabel": "Report Approval",
           "order": 3,
           "description": "Send sample report to stakeholder for sign-off on format and data accuracy.",
           "effortRange": "1-2h",
