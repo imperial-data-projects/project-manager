@@ -188,10 +188,10 @@
       "priority": "medium",
       "deadline": "2026-05-15",
       "status": "active",
-      "currentPhase": "interview",
+      "currentPhase": "kpi-proposal",
       "phases": {
-        "interview": "in-progress",
-        "kpi-proposal": "pending",
+        "interview": "complete",
+        "kpi-proposal": "in-progress",
         "mockups": "pending",
         "mockup-approval": "pending",
         "build": "pending",
