@@ -565,6 +565,33 @@
       "tasks": [],
       "updated": "2026-04-07",
       "notes": ""
+    },
+    {
+      "id": "fundamentals-dashboard",
+      "name": "Fundamentals Dashboard",
+      "category": "powerbi",
+      "domain": "executive",
+      "parent": null,
+      "stakeholder": "",
+      "priority": "medium",
+      "deadline": "2026-05-31",
+      "status": "active",
+      "currentPhase": null,
+      "statusChip": {
+        "type": "not-started",
+        "label": "Not Started"
+      },
+      "phases": {
+        "interview": "pending",
+        "kpi-proposal": "pending",
+        "mockups": "pending",
+        "mockup-approval": "pending",
+        "build": "pending",
+        "release": "pending"
+      },
+      "tasks": [],
+      "updated": "2026-04-02",
+      "notes": ""
     }
   ],
   "groups": [
