@@ -82,7 +82,7 @@
       "parent": "ids",
       "stakeholder": "",
       "priority": "high",
-      "deadline": "2026-04-10",
+      "deadline": "2026-04-12",
       "status": "active",
       "currentPhase": "mockups",
       "phases": {
@@ -419,7 +419,7 @@
       "parent": null,
       "stakeholder": "",
       "priority": "high",
-      "deadline": "2026-04-07",
+      "deadline": "2026-04-10",
       "status": "active",
       "currentPhase": "backend",
       "phases": {
