@@ -24,7 +24,7 @@ export default function App() {
       <div className="mx-auto max-w-[1200px] px-6 py-8">
         <header className="mb-8">
           <h1 className="text-[28px] font-semibold tracking-tight">Project Portfolio</h1>
-          <p className="text-[15px] text-muted-foreground">Data & Development Team</p>
+          <p className="text-[15px] text-muted-foreground">Data and Development</p>
         </header>
 
         <SummarySection projects={projects.projects} templates={templates} />
