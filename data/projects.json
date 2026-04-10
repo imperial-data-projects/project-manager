@@ -127,6 +127,32 @@
       "notes": ""
     },
     {
+      "id": "ids-hydration-commission",
+      "name": "Hydration Commission Module",
+      "category": "application",
+      "domain": "customer-svc",
+      "parent": "ids",
+      "stakeholder": "",
+      "priority": "high",
+      "deadline": "2026-04-10",
+      "status": "active",
+      "currentPhase": "backend",
+      "phases": {
+        "interview": "complete",
+        "workflow": "complete",
+        "wireframe": "complete",
+        "mockups": "complete",
+        "backend": "in-progress",
+        "frontend": "pending",
+        "dev-release": "pending",
+        "testing": "pending",
+        "production": "pending"
+      },
+      "tasks": [],
+      "updated": "2026-04-10",
+      "notes": ""
+    },
+    {
       "id": "account-business-review",
       "name": "Account Business Review",
       "category": "application",
