@@ -214,12 +214,12 @@
       "priority": "medium",
       "deadline": "2026-05-15",
       "status": "active",
-      "currentPhase": "mockups",
+      "currentPhase": "mockup-approval",
       "phases": {
         "interview": "complete",
         "kpi-proposal": "complete",
-        "mockups": "in-progress",
-        "mockup-approval": "pending",
+        "mockups": "complete",
+        "mockup-approval": "in-progress",
         "build": "pending",
         "release": "pending"
       },
