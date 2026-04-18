@@ -592,6 +592,22 @@
       "tasks": [],
       "updated": "2026-04-02",
       "notes": ""
+    },
+    {
+      "id": "account-business-review",
+      "name": "Account Business Review",
+      "category": "application",
+      "domain": "",
+      "parent": null,
+      "stakeholder": "",
+      "priority": "high",
+      "deadline": "2026-04-30",
+      "status": "planned",
+      "currentPhase": null,
+      "phases": {},
+      "tasks": [],
+      "updated": "2026-04-17",
+      "notes": ""
     }
   ],
   "groups": [
