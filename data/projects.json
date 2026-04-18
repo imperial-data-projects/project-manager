@@ -153,32 +153,6 @@
       "notes": ""
     },
     {
-      "id": "account-business-review",
-      "name": "Account Business Review",
-      "category": "application",
-      "domain": "customer-svc",
-      "parent": null,
-      "stakeholder": "",
-      "priority": "high",
-      "deadline": "2026-04-30",
-      "status": "active",
-      "currentPhase": "workflow",
-      "phases": {
-        "interview": "complete",
-        "workflow": "in-progress",
-        "wireframe": "pending",
-        "mockups": "pending",
-        "backend": "pending",
-        "frontend": "pending",
-        "dev-release": "pending",
-        "testing": "pending",
-        "production": "pending"
-      },
-      "tasks": [],
-      "updated": "2026-04-06",
-      "notes": "Page and KPI planning"
-    },
-    {
       "id": "par-analysis",
       "name": "Par Analysis",
       "category": "application",
