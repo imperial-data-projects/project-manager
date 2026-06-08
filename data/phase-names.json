@@ -1,0 +1,10 @@
+{
+  "description": "Canonical phase names for tracker entries. Claude matches roadmap phases to these names semantically. Novel names accepted by user are appended automatically. Seeded by dogfood projects.",
+  "names": [
+    "schema-foundation",
+    "recommendation-engine",
+    "exception-dashboard",
+    "approval-export-loop",
+    "admin-module"
+  ]
+}
