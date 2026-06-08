@@ -83,21 +83,22 @@
       "stakeholder": "",
       "priority": "high",
       "deadline": "2026-04-12",
-      "status": "active",
-      "currentPhase": "mockups",
+      "status": "complete",
+      "completedDate": "2026-04-14",
+      "currentPhase": "production",
       "phases": {
         "interview": "complete",
         "workflow": "complete",
         "wireframe": "complete",
-        "mockups": "in-progress",
-        "backend": "pending",
-        "frontend": "pending",
-        "dev-release": "pending",
-        "testing": "pending",
-        "production": "pending"
+        "mockups": "complete",
+        "backend": "complete",
+        "frontend": "complete",
+        "dev-release": "complete",
+        "testing": "complete",
+        "production": "complete"
       },
       "tasks": [],
-      "updated": "2026-04-01",
+      "updated": "2026-06-08",
       "notes": "Format submission"
     },
     {
@@ -109,21 +110,22 @@
       "stakeholder": "",
       "priority": "high",
       "deadline": "2026-04-15",
-      "status": "active",
-      "currentPhase": "backend",
+      "status": "complete",
+      "completedDate": "2026-04-18",
+      "currentPhase": "production",
       "phases": {
         "interview": "complete",
         "workflow": "complete",
         "wireframe": "complete",
         "mockups": "complete",
-        "backend": "in-progress",
-        "frontend": "pending",
-        "dev-release": "pending",
-        "testing": "pending",
-        "production": "pending"
+        "backend": "complete",
+        "frontend": "complete",
+        "dev-release": "complete",
+        "testing": "complete",
+        "production": "complete"
       },
       "tasks": [],
-      "updated": "2026-03-31",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
@@ -135,21 +137,22 @@
       "stakeholder": "",
       "priority": "high",
       "deadline": "2026-04-10",
-      "status": "active",
-      "currentPhase": "backend",
+      "status": "complete",
+      "completedDate": "2026-05-17",
+      "currentPhase": "production",
       "phases": {
         "interview": "complete",
         "workflow": "complete",
         "wireframe": "complete",
         "mockups": "complete",
-        "backend": "in-progress",
-        "frontend": "pending",
-        "dev-release": "pending",
-        "testing": "pending",
-        "production": "pending"
+        "backend": "complete",
+        "frontend": "complete",
+        "dev-release": "complete",
+        "testing": "complete",
+        "production": "complete"
       },
       "tasks": [],
-      "updated": "2026-04-10",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
@@ -182,30 +185,30 @@
       "parent": null,
       "stakeholder": "",
       "priority": "medium",
-      "deadline": "2026-05-15",
+      "deadline": "2026-06-30",
       "status": "active",
-      "currentPhase": "mockup-approval",
+      "currentPhase": "build",
       "phases": {
         "interview": "complete",
         "kpi-proposal": "complete",
         "mockups": "complete",
-        "mockup-approval": "in-progress",
-        "build": "pending",
+        "mockup-approval": "complete",
+        "build": "in-progress",
         "release": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-13",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
       "id": "route-manager",
-      "name": "Route Manager Dashboard",
+      "name": "Route Manager Dashboard Rewrite",
       "category": "powerbi",
       "domain": "operations",
       "parent": null,
       "stakeholder": "",
       "priority": "medium",
-      "deadline": "2026-06-15",
+      "deadline": "2026-07-31",
       "status": "active",
       "currentPhase": null,
       "statusChip": {
@@ -221,7 +224,7 @@
         "release": "pending"
       },
       "tasks": [],
-      "updated": "",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
@@ -233,22 +236,19 @@
       "stakeholder": "",
       "priority": "medium",
       "deadline": "2026-05-31",
-      "status": "active",
-      "currentPhase": null,
-      "statusChip": {
-        "type": "not-started",
-        "label": "Not Started"
-      },
+      "status": "complete",
+      "completedDate": "2026-05-28",
+      "currentPhase": "release",
       "phases": {
-        "interview": "pending",
-        "kpi-proposal": "pending",
-        "mockups": "pending",
-        "mockup-approval": "pending",
-        "build": "pending",
-        "release": "pending"
+        "interview": "complete",
+        "kpi-proposal": "complete",
+        "mockups": "complete",
+        "mockup-approval": "complete",
+        "build": "complete",
+        "release": "complete"
       },
       "tasks": [],
-      "updated": "",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
@@ -416,21 +416,22 @@
       "stakeholder": "",
       "priority": "high",
       "deadline": "2026-04-10",
-      "status": "active",
-      "currentPhase": "backend",
+      "status": "complete",
+      "completedDate": "2026-05-10",
+      "currentPhase": "production",
       "phases": {
         "interview": "complete",
         "workflow": "complete",
         "wireframe": "complete",
         "mockups": "complete",
-        "backend": "in-progress",
-        "frontend": "pending",
-        "dev-release": "pending",
-        "testing": "pending",
-        "production": "pending"
+        "backend": "complete",
+        "frontend": "complete",
+        "dev-release": "complete",
+        "testing": "complete",
+        "production": "complete"
       },
       "tasks": [],
-      "updated": "2026-04-07",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
@@ -570,7 +571,7 @@
       "parent": null,
       "stakeholder": "",
       "priority": "medium",
-      "deadline": "2026-05-31",
+      "deadline": "2026-06-30",
       "status": "active",
       "currentPhase": null,
       "statusChip": {
@@ -586,7 +587,7 @@
         "release": "pending"
       },
       "tasks": [],
-      "updated": "2026-04-02",
+      "updated": "2026-06-08",
       "notes": ""
     },
     {
